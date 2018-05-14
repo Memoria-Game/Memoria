@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xml:lang="en" lang="en">
+    <head>
+        <title>Memoria | Stats</title>
+        <!-- <link rel="shortcut icon" href="<?php echo $config['paths']['images']['logos']."/favicon.ico"; ?>"/> -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Material Design for Bootstrap fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+        <!-- Material Design for Bootstrap CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+        <!-- Custom CSS File -->
+        <link rel="stylesheet" href="css/memoria.css"> 
+
+        <!-- JQV Map-->
+        <link href="node_modules/jqvmap/dist/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="node_modules/jqvmap/dist/jquery.vmap.js"></script>
+        <script type="text/javascript" src="node_modules/jqvmap/dist/maps/jquery.vmap.world.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/jquery.vmap.sampledata.js"></script>
+
+        <script>
+          jQuery(document).ready(function () {
+            jQuery('#vmap').vectorMap({
+              map: 'world_en',
+              backgroundColor: '#18BC9C',
+              color: '#ffffff',
+              hoverOpacity: 0.7,
+              selectedColor: '#666666',
+              enableZoom: false,
+              showTooltip: true,
+              scaleColors: ['#C8EEFF', '#006491'],
+              values: sample_data,
+              normalizeFunction: 'polynomial'
+            });
+          });
+        </script>
+
+        <!-- ChartJS -->
+        <script type="text/javascript" src="node_modules/chart.js/dist/Chart.min.js"></script>
+
+
+        <!-- ProgressBar.js --> 
+        <script type="text/javascript" src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+          <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/logo.png" width="200px"></a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="game.html">Play</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Statistics</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Disconnect</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+    <!-- Progression Section -->
+    <section class="" id="progression">
+      <div class="container">
+        <center><h2 class= " text-center text-uppercase text-secondary mb-0">You're progression</h2></center>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <div class="col-md-4">
+            blabla
+            <div id="bar1"></div>
+            blabla
+            <div id="bar2"></div>
+            blabla
+            <div id="bar3"></div>
+            blabla
+            <div id="bar4"></div>
+
+            <script type="text/javascript">
+                window.onload = function onLoad() {
+                var bar1 = new ProgressBar.Line('#bar1', {
+                    strokeWidth: 4,
+                      easing: 'easeInOut',
+                      duration: 1400,
+                      color: '#FFEA82',
+                      trailColor: '#eee',
+                      trailWidth: 1,
+                      svgStyle: {width: '80%', height: '80%'},
+                      text: {
+                        style: {
+                          // Text color.
+                          // Default: same as stroke color (options.color)
+                          color: '#999',
+                          position: 'relative',
+                          left: '40%',
+                          top: '10px',
+                          padding: 0,
+                          margin: 0,
+                          transform: null
+                        },
+                        autoStyleContainer: false
+                      },
+                      from: {color: '#FFEA82'},
+                      to: {color: '#ED6A5A'},
+                      step: (state, bar) => {
+                        bar.setText(Math.round(bar.value() * 100) + ' %');
+                      }
+                    });
+
+                var bar2 = new ProgressBar.Line('#bar2', {
+                    strokeWidth: 4,
+                      easing: 'easeInOut',
+                      duration: 1400,
+                      color: '#6ab04c',
+                      trailColor: '#eee',
+                      trailWidth: 1,
+                      svgStyle: {width: '80%', height: '80%'},
+                      text: {
+                        style: {
+                          // Text color.
+                          // Default: same as stroke color (options.color)
+                          color: '#999',
+                          position: 'relative',
+                          left: '40%',
+                          top: '10px',
+                          padding: 0,
+                          margin: 0,
+                          transform: null
+                        },
+                        autoStyleContainer: false
+                      },
+                      from: {color: '#FFEA82'},
+                      to: {color: '#ED6A5A'},
+                      step: (state, bar) => {
+                        bar.setText(Math.round(bar.value() * 100) + ' %');
+                      }
+                    });
+
+                var bar3 = new ProgressBar.Line('#bar3', {
+                    strokeWidth: 4,
+                      easing: 'easeInOut',
+                      duration: 1400,
+                      color: '#eb4d4b',
+                      trailColor: '#eee',
+                      trailWidth: 1,
+                      svgStyle: {width: '80%', height: '80%'},
+                      text: {
+                        style: {
+                          // Text color.
+                          // Default: same as stroke color (options.color)
+                          color: '#999',
+                          position: 'relative',
+                          left: '40%',
+                          top: '10px',
+                          padding: 0,
+                          margin: 0,
+                          transform: null
+                        },
+                        autoStyleContainer: false
+                      },
+                      from: {color: '#FFEA82'},
+                      to: {color: '#ED6A5A'},
+                      step: (state, bar) => {
+                        bar.setText(Math.round(bar.value() * 100) + ' %');
+                      }
+                    });
+
+                var bar4 = new ProgressBar.Line('#bar4', {
+                    strokeWidth: 4,
+                      easing: 'easeInOut',
+                      duration: 1400,
+                      color: '#30336b',
+                      trailColor: '#eee',
+                      trailWidth: 1,
+                      svgStyle: {width: '80%', height: '80%'},
+                      text: {
+                        style: {
+                          // Text color.
+                          // Default: same as stroke color (options.color)
+                          color: '#999',
+                          position: 'relative',
+                          left: '40%',
+                          top: '10px',
+                          padding: 0,
+                          margin: 0,
+                          transform: null
+                        },
+                        autoStyleContainer: false
+                      },
+                      from: {color: '#FFEA82'},
+                      to: {color: '#ED6A5A'},
+                      step: (state, bar) => {
+                        bar.setText(Math.round(bar.value() * 100) + ' %');
+                      }
+                    });
+
+                bar1.animate(1);  // Value from 0.0 to 1.0
+                bar2.animate(0.8);  // Value from 0.0 to 1.0
+                bar3.animate(0.9);  // Value from 0.0 to 1.0
+                bar4.animate(0.5);  // Value from 0.0 to 1.0
+                };
+            </script>
+          </div>
+          <div class="col-md-8">
+            <canvas id="scores" width="400" height="200"></canvas>
+            <script>
+                var ctx = document.getElementById("scores");
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["18/10/18", "18/10/18", "19/10/18", "20/10/18", "21/10/18", "22/10/18"],
+                        datasets: [{
+                            label: 'Score',
+                            data: [12, 19, 3, 5, 25, 30],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+                </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <center><h2 class="text-center text-uppercase text-white">Best scores by country</h2></center>
+        <hr class="star-light mb-5">
+        <div class="row">
+
+                <div class="col-md-4">
+                  <h4 class="line_30">Top 5 countries : </h4>
+
+                  <table class="countries_list">
+                    <tbody>
+                      <tr>
+                        <td>United States</td>
+                        <td class="fs15 fw700 text-right">33%</td>
+                      </tr>
+                      <tr>
+                        <td>France</td>
+                        <td class="fs15 fw700 text-right">27%</td>
+                      </tr>
+                      <tr>
+                        <td>Germany</td>
+                        <td class="fs15 fw700 text-right">16%</td>
+                      </tr>
+                      <tr>
+                        <td>Spain</td>
+                        <td class="fs15 fw700 text-right">11%</td>
+                      </tr>
+                      <tr>
+                        <td>Britain</td>
+                        <td class="fs15 fw700 text-right">10%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="vmap" class="col-md-8" style="width: 500px; height: 400px;"></div>
+
+        </div>
+    </section>
+
+
+   <!-- Credits Section -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Compare To others</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <canvas id="comparePieChart"></canvas>
+          <script type="text/javascript">
+                data = {
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ]
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'You',
+                    'Players in your country',
+                    'Players in the world'
+                ]
+            };
+
+            var ctx = document.getElementById("comparePieChart");
+              // And for a doughnut chart
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: {
+                        
+                    }
+                });
+
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">Your friends</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+
+          <div class="col-md-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"><strong>#</strong></th>
+                      <th scope="col"><strong>Pseudo</strong></th>
+                      <th scope="col"><strong>Score</strong></th>
+                      <th scope="col"><strong>Date</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>10202</td>
+                      <td>18.04.18</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>1123</td>
+                      <td>18.04.18</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                      <td>1111</td>
+                      <td>18.04.18</td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            <div class="row"><center><div class="col-md-12"><center><button class="btn btn-secondary btn-xl">Add New friends</button></div></center></div>
+        </div>
+
+    </section>
+    </body>
+</html>
+

@@ -1,0 +1,17 @@
+{
+  "name": "memoria",
+  "version": "1.0.0",
+  "description": "simple memory game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Basile Chatillon, Rémi Jacquemard, François Quellec",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^2.7.2",
+    "jqvmap": "^1.5.1",
+    "phaser": "^3.7.1",
+    "progressbar.js": "^1.0.1"
+  }
+}
