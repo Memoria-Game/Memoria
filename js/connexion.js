@@ -22,15 +22,15 @@ function logout() {
 }
 
 function signup(username, password, mail, country){
-    return $.ajax("http://api.memoria.cf/signin", {
+    return $.ajax("http://api.memoria.cf/signup", {
      method: 'POST',
      data: JSON.stringify({pseudo:username, email:mail, pwd:password, country:country}),
      contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true }
-  })
+  })/*
   .fail((msg) => console.log("error occured " + msg.responseText))
-  .then((msg) => console.log(msg));
+  .then((msg) => console.log(msg));*/
 }
 
 function get_form_input(form){
@@ -60,6 +60,12 @@ function form_register(f) {
 
     username = data['pseudo']
     password = data['password']
-    password = data['email']
-    password = data['password']
+    email = data['email']
+    country = data['country']
+
+    signup(username, password, email, country)
+        .then(() => window.location.href = "game.html")
+        .fail(() => alert("Une erreur s'est produite"))
+    
+    return false
 }
