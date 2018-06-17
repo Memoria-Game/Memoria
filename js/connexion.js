@@ -16,9 +16,9 @@ function logout() {
      method: 'GET',
      xhrFields: { withCredentials: true },
      crossDomain: true
-  })
+  });/*
   .then((msg) => console.log(msg))
-  .fail((msg) => console.log("error occured " + msg));;
+  .fail((msg) => console.log("error occured " + msg));*/
 }
 
 function signup(username, password, mail, country){
@@ -68,4 +68,10 @@ function form_register(f) {
         .fail(() => alert("Une erreur s'est produite"))
     
     return false
+}
+
+function form_disconnect(){
+    logout()
+        .then(() => window.location.href = "index.html")
+        .fail(() => alert("Une erreur s'est produite"))
 }
