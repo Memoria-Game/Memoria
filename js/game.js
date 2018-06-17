@@ -398,7 +398,7 @@ gameScene.loose = function(){
     dataEnd = JSON.stringify(dataEnd)
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
-    }, [], this);))
+    }, [], this)));
     // restart game
     
 }
