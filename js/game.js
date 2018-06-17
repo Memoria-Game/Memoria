@@ -93,14 +93,13 @@ function initialize(game) {
         });
     }
     
-    window.addEventListener('resize', resize);
+    getResumeGameFromServer(this).then(()=> {window.addEventListener('resize', resize);
     if(game.isBooted) resize();
-    else game.events.once('boot', resize);
+    else game.events.once('boot', resize);});
 }
 
 var game = new Phaser.Game(config);
-getResumeGameFromServer(game).then(() => initialize(game))
-
+initialize(game);
 
 // calculate the tiles' position on the X-axis
 gameScene.positionX = function(col)
@@ -131,7 +130,6 @@ gameScene.preload = function ()
     this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
     this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
     this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
-    
 }
 
 gameScene.create = function()
