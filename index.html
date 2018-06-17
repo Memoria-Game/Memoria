@@ -21,6 +21,10 @@
 
   <!-- Custom CSS File -->
   <link rel="stylesheet" href="css/memoria.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/connexion.js"></script>
 </head>
 
 <body>
@@ -68,18 +72,18 @@
       <hr class="star-dark mb-5">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <form name="loginform" id="loginform" novalidate="novalidate">
+          <form name="loginform" id="loginform" novalidate="novalidate" onsubmit="return form_login(this)">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Email or Pseudo</label>
-                <input class="form-control" id="emailPseudo" type="text" placeholder="Email or password" required="required" data-validation-required-message="Please enter your email or pseudo">
+                <input name="pseudo" class="form-control" id="pseudo" type="text" placeholder="Pseudo" required="required" data-validation-required-message="Please enter your pseudo">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Password</label>
-                <input class="form-control" id="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password">
+                <input name="password" class="form-control" id="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -100,8 +104,8 @@
             </div>
             <div id="success"></div>
             <div class="form-group">
-              <a type="submit" class="btn btn-primary btn-xl" id="login" href="game.html">Connect</a>
-              <button type="submit" class="btn btn-primary btn-xl" id="login">Connect</button>
+              <!--a type="submit" class="btn btn-primary btn-xl" id="login" href="game.html">Connect</a-->
+              <input type="submit" class="btn btn-primary btn-xl" id="login" value="Connect" />
             </div>
           </form>
         </div>
@@ -285,14 +289,12 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+   <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
     crossorigin="anonymous"></script>
   <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
-  <script type="text/javascript" src="js/connexion.js"></script>
+  
 </body>
 
 </html>
