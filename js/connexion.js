@@ -48,10 +48,18 @@ function form_login(f) {
     password = data['password']
 
     signin(username, password)
-        .then(f.submit())
-        .fail(alert("Mauvais nom d'utilisateur ou mot de passe"))
+        .then(() => window.location.href = "game.html")
+        .fail(() => alert("Mauvais nom d'utilisateur ou mot de passe"))
 
     //console.log(username);
     return false
 }
 
+function form_register(f) {
+    data = get_form_input(f)
+
+    username = data['pseudo']
+    password = data['password']
+    password = data['email']
+    password = data['password']
+}
