@@ -170,8 +170,8 @@ gameScene.create = function()
         tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
     }
     
-    console.log(options.numberOfRows);
-    console.log(options.numberOfCols);
+    console.log(this.options.numberOfRows);
+    console.log(this.options.numberOfCols);
 
     // Construct the array of tiled sprites
     for (var i = 0; i < this.options.numberOfRows; i++) {
