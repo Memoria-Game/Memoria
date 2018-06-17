@@ -6,7 +6,7 @@ function getFromAPI(endpoint){
      })
 }
 
-function getPesonnalStat() {
+function getPersonnalStat() {
    return getFromAPI('statistics/personnal')   
 }
 
