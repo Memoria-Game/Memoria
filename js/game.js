@@ -22,7 +22,6 @@ function getNextStageFromServer(game){
     $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
      crossDomain: true,
-     async: false,
      xhrFields: { withCredentials: true },
      success : function(responseText, statut){ 
         alert(responseText)
@@ -44,7 +43,6 @@ function getResumeGameFromServer(game){
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-     async: false,
      success : function(responseText, statut){ 
         alert(responseText)
         alert(statut)
