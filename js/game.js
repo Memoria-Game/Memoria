@@ -18,6 +18,40 @@ let config = {
     backgroundColor: '#FFF'
 };
 
+function getNextStageFromServer(game, playerId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var obj = JSON.parse(this.responseText);
+        game.stageNumber = obj.stageLevel;
+        game.stage = obj.map;
+    }
+  };
+  xhttp.open("GET", "/game/nextStage", false);
+  xhttp.send();
+}
+
+function getResumeGameFromServer(game, playerId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var obj = JSON.parse(this.responseText);
+        game.score = obj.score;
+        game.numberOfBonusMap = obj.yelloBonus;
+        game.numberOfBonusLife = obj.redBonus;
+    }
+  };
+  xhttp.open("GET", "/game/resume", false);
+  xhttp.send();
+}
+
+function sendEndStage(playerId, dataLevel){
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/game/endStage", true);
+  xhttp.send(dataLevel);
+}
+
+
 // handle window size/resize
 function initialize(game) {
     function resize() {
@@ -81,11 +115,11 @@ gameScene.preload = function ()
 gameScene.create = function()
 {
     // TODO: Get this values from the Database !
-    this.score = 0;
+    //this.score = 0;
 
-    this.stageNumber = 0;
+    //this.stageNumber = 0;
 
-    let stage = [[SHOW,LIFE,EMPTY,WALL,EMPTY,EXIT,EMPTY,EMPTY],
+    /*let stage = [[SHOW,LIFE,EMPTY,WALL,EMPTY,EXIT,EMPTY,EMPTY],
                  [EMPTY,SHOW,EMPTY,WALL,LIFE,WALL,EMPTY,EMPTY],
                  [EMPTY,WALL,EMPTY,WALL,WALL,EMPTY,EMPTY,EMPTY],
                  [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL],
@@ -93,16 +127,18 @@ gameScene.create = function()
                  [SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL,EMPTY,EMPTY],
                  [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,SHOW],
                  [SHOW,WALL,EMPTY,EMPTY,EMPTY,EMPTY,WALL,WALL]
-                 ];
+                 ];*/
 
-    this.bestScore = 0;
+    //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
     this.numBonus = 5;
 
     // Number of seconds we show the map in seconds, showtime ;) 
     this.showTime = 3;
-
+    
+    this.numberOfYellowBonusUsed = 0;
+    this.numberOfRedBonusUsed = 0;
 
     // variables for 1 stage
     this.totalTime = 0;
@@ -184,9 +220,9 @@ gameScene.create = function()
 
     // Create the bonus count sprites
     this.lifes_bonus = [];
-    this.numberOfBonusLife = 0;
+    //this.numberOfBonusLife = 0;
     this.maps_bonus = [];
-    this.numberOfBonusMap = 0;
+    //this.numberOfBonusMap = 0;
     for(var i = 0; i < 5; i++){
         this.lifes_bonus[i] = {
             full: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_full'),
@@ -288,6 +324,7 @@ gameScene.update = function ()
                     for(var i = 0; i < this.numBonus; i++)
                         this.lifes_bonus[i].full.visible = 0;
                     this.numberOfBonusLife = 0;
+                    this.numberOfRedBonusUsed++;
                 }
                 else this.loose();
                 break;
@@ -313,6 +350,7 @@ gameScene.update = function ()
                 this.maps_bonus[i].full.visible = 0;
             this.numberOfBonusMap = 0;
             this.showMap(this.showTime);
+            this.numberOfYellowBonusUsed++;
         }
     }
 
@@ -324,11 +362,11 @@ gameScene.win = function(){
     this.winText.visible = 1;
     this.restartText.visible = 1;
     this.timerEvent.destroy();
+    
 }
 
 gameScene.loose = function(){
-    // TODO : Update the database
-
+    this.stageComplete = false;
     // shake the camera
     this.cameras.main.shake(500);
 
@@ -337,6 +375,10 @@ gameScene.loose = function(){
         this.cameras.main.fade(250);
     }, [], this);
 
+    // Prepare the data for sending to the server
+    dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
+    
+    //sendEndStage(playerId, dataEnd)
     // restart game
     this.time.delayedCall(500, function() {
         this.scene.restart();
