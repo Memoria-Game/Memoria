@@ -135,6 +135,7 @@ gameScene.preload = function ()
 
 gameScene.create = function()
 {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     // TODO: Get this values from the Database !
     //this.score = 0;
 
