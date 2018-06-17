@@ -1,150 +1,162 @@
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Memoria | Login</title>
-            <!-- <link rel="shortcut icon" href="<?php echo $config['paths']['images']['logos']."/favicon.ico"; ?>"/> -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="en">
 
-            <!-- Material Design for Bootstrap fonts and icons -->
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<head>
+  <title>Memoria | Login</title>
+  <!-- <link rel="shortcut icon" href="<?php echo $config['paths']['images']['logos']."/favicon.ico"; ?>"/> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <!-- Fonts -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-            <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <!-- Material Design for Bootstrap fonts and icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
-            <!-- Material Design for Bootstrap CSS -->
-            <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-            <!-- Custom CSS File -->
-            <link rel="stylesheet" href="css/memoria.css"> 
-        </head>
-        <body>
-            <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-              <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/logo.png" width="200px"></a>
-                <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  Menu
-                  <i class="fa fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#login">Login</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#credits">Credits</a>
-                    </li>
-                  </ul>
-                </div>
+  <!-- Material Design for Bootstrap CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+  <!-- Custom CSS File -->
+  <link rel="stylesheet" href="css/memoria.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <img src="assets/logo.png" width="200px">
+      </a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#login">Login</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#credits">Credits</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container">
+      <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
+      <h1 class="text-uppercase mb-0">Welcome to the world best game ever !</h1>
+      <hr class="star-light">
+      <h2 class="font-weight-light mb-0">Play and compare your brain with millions of other players</h2>
+    </div>
+  </header>
+
+
+  <!-- Login Section -->
+  <section id="login">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Login</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <form name="loginform" id="loginform" novalidate="novalidate">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Email or Pseudo</label>
+                <input class="form-control" id="emailPseudo" type="text" placeholder="Email or password" required="required" data-validation-required-message="Please enter your email or pseudo">
+                <p class="help-block text-danger"></p>
               </div>
-            </nav>
-
-        <!-- Header -->
-        <header class="masthead bg-primary text-white text-center">
-          <div class="container">
-            <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
-            <h1 class="text-uppercase mb-0">Welcome to the world best game ever !</h1>
-            <hr class="star-light">
-            <h2 class="font-weight-light mb-0">Play and compare your brain with millions of other players</h2>
-          </div>
-        </header>
-
-
-        <!-- Login Section -->
-        <section id="login">
-          <div class="container">
-            <h2 class="text-center text-uppercase text-secondary mb-0">Login</h2>
-            <hr class="star-dark mb-5">
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Password</label>
+                <input class="form-control" id="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
             <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <form name="loginform" id="loginform" novalidate="novalidate">
-                  <div class="control-group">
-                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                      <label>Email or Pseudo</label>
-                      <input class="form-control" id="emailPseudo" type="text" placeholder="Email or password" required="required" data-validation-required-message="Please enter your email or pseudo">
-                      <p class="help-block text-danger"></p>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                      <label>Password</label>
-                      <input class="form-control" id="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password">
-                      <p class="help-block text-danger"></p>
-                    </div>
-                  </div>
-                  <br>
-                  <div class="row">
-                      <div class="col-md-6 text-left">
-                          <small>
-                            New Player? 
-                            <a href=""  data-toggle="modal" data-target="#register-modal">Register me</a>
-                          </small>
-                      </div>
-                      <div class="col-md-6 text-right">
-                          <small>
-                            Forgot password? 
-                            <a href="" data-toggle="modal" data-target="#forgot-password-modal">Send me an email</a>
-                          </small>
-                      </div>
-                  </div>
-                  <div id="success"></div>
-                  <div class="form-group">
-                    <a type="submit" class="btn btn-primary btn-xl" id="login" href="game.html">Connect</a>
-                    <button type="submit" class="btn btn-primary btn-xl" id="login">Connect</button>
-                  </div>
-                </form>
+              <div class="col-md-6 text-left">
+                <small>
+                  New Player?
+                  <a href="" data-toggle="modal" data-target="#register-modal">Register me</a>
+                </small>
+              </div>
+              <div class="col-md-6 text-right">
+                <small>
+                  Forgot password?
+                  <a href="" data-toggle="modal" data-target="#forgot-password-modal">Send me an email</a>
+                </small>
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="bg-primary text-white mb-0" id="about">
-          <div class="container">
-            <h2 class="text-center text-uppercase text-white">About</h2>
-            <hr class="star-light mb-5">
-            <div class="row">
-              <div class="col-lg-4 ml-auto">
-                <p class="lead">Memoria is a combinaison of memory and path-finder game built by Heig-vd students during a Scala project. The front end is developped with bootstrap and phaser.js whereas the back-end is developped with Scala play framework. The principe of the game is simple, you need to reach the green square without touching the walls(black squares). The more you succeed, the more difficult it is. Collect some bonus to facilitate your travel, you need 5 of the same type to use it</p>
-              </div>
-              <div class="col-lg-4 mr-auto">
-                <p class="lead"><img src="assets/game_example.png" width="150%" height="200%"></p>
-              </div>
+            <div id="success"></div>
+            <div class="form-group">
+              <a type="submit" class="btn btn-primary btn-xl" id="login" href="game.html">Connect</a>
+              <button type="submit" class="btn btn-primary btn-xl" id="login">Connect</button>
             </div>
-            <div class="text-center mt-4">
-              <a class="btn btn-xl btn-outline-light" href="#login">
-                Play Now!
-              </a>
-            </div>
-          </div>
-        </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="bg-primary text-white mb-0" id="about">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-white">About</h2>
+      <hr class="star-light mb-5">
+      <div class="row">
+        <div class="col-lg-4 ml-auto">
+          <p class="lead">Memoria is a combinaison of memory and path-finder game built by Heig-vd students during a Scala project. The front
+            end is developped with bootstrap and phaser.js whereas the back-end is developped with Scala play framework.
+            The principe of the game is simple, you need to reach the green square without touching the walls(black squares).
+            The more you succeed, the more difficult it is. Collect some bonus to facilitate your travel, you need 5 of the
+            same type to use it</p>
+        </div>
+        <div class="col-lg-4 mr-auto">
+          <p class="lead">
+            <img src="assets/game_example.png" width="150%" height="200%">
+          </p>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a class="btn btn-xl btn-outline-light" href="#login">
+          Play Now!
+        </a>
+      </div>
+    </div>
+  </section>
 
 
-       <!-- Credits Section -->
-        <section class="credits" id="credits">
-          <div class="container">
-            <h2 class="text-center text-uppercase text-secondary mb-0">Credits</h2>
-            <hr class="star-dark mb-5">
-            <div class="row">
-              <div class="col-md-4">
-                Basile Chatillion
-              </div>
-              <div class="col-md-4">
-                Rémi Jacquemard
-              </div>
-              <div class="col-md-4">
-                François Quellec
-              </div>
-            </div>
-          </div>
-        </section>
+  <!-- Credits Section -->
+  <section class="credits" id="credits">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Credits</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-md-4">
+          Basile Chatillion
+        </div>
+        <div class="col-md-4">
+          Rémi Jacquemard
+        </div>
+        <div class="col-md-4">
+          François Quellec
+        </div>
+      </div>
+    </div>
+  </section>
 
-     <!-- Footer 
+  <!-- Footer 
         <footer class="footer text-center">
           <div class="container">
             <div class="row">
@@ -192,90 +204,95 @@
           </div>
         </footer>-->
 
-            <!-- Modals -->
-            <!-- Forgot password -->
-            <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="forgot-password-modal" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="forgot-password-modal-title">Forgot Password ?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="forgot-password-email" class="">Please provide your email address: </label><br>
-                            <input type="email" class="form-control" id="forgot-password-email" placeholder="Email address">
-                        </div>
-                        
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send</button>             
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Register -->
-            <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="register-modal" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="register-modal-title">Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="registerPseudo" class="bmd-label-floating">Pseudo</label>
-                            <input type="text" class="form-control" id="registerPseudo">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="registerEmail1" class="bmd-label-floating">Email address</label>
-                            <input type="email" class="form-control" id="registerEmail1">
-                            <span class="bmd-help">We'll never share your email with anyone else.</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail2" class="bmd-label-floating">Confirm Email address</label>
-                            <input type="email" class="form-control" id="registerEmail2">
-                            <span class="bmd-help">We'll never share your email with anyone else.</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="registerPassword1" class="bmd-label-floating">Password</label>
-                            <input type="password" class="form-control" id="registerPassword1">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword2" class="bmd-label-floating">Confirm Password</label>
-                            <input type="password" class="form-control" id="registerPassword2">
-                        </div>
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Create</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    
-                  </div>
-                </div>
-            </div>
+  <!-- Modals -->
+  <!-- Forgot password -->
+  <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="forgot-password-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgot-password-modal-title">Forgot Password ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="forgot-password-email" class="">Please provide your email address: </label>
+              <br>
+              <input type="email" class="form-control" id="forgot-password-email" placeholder="Email address">
+            </div>
 
-          
-            <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-            <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-            <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-        </body>
-    </html>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+        <div class="modal-footer">
 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register -->
+  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="register-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="register-modal-title">Register</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="registerPseudo" class="bmd-label-floating">Pseudo</label>
+              <input type="text" class="form-control" id="registerPseudo">
+            </div>
+
+            <div class="form-group">
+              <label for="registerEmail1" class="bmd-label-floating">Email address</label>
+              <input type="email" class="form-control" id="registerEmail1">
+              <span class="bmd-help">We'll never share your email with anyone else.</span>
+            </div>
+            <div class="form-group">
+              <label for="registerEmail2" class="bmd-label-floating">Confirm Email address</label>
+              <input type="email" class="form-control" id="registerEmail2">
+              <span class="bmd-help">We'll never share your email with anyone else.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="registerPassword1" class="bmd-label-floating">Password</label>
+              <input type="password" class="form-control" id="registerPassword1">
+            </div>
+            <div class="form-group">
+              <label for="registerPassword2" class="bmd-label-floating">Confirm Password</label>
+              <input type="password" class="form-control" id="registerPassword2">
+            </div>
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Create</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+  <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+  <script type="text/javascript" src="js/connexion.js"></script>
+</body>
+
+</html>
