@@ -99,7 +99,8 @@ function initialize(game) {
 }
 
 var game = new Phaser.Game(config);
-initialize(game);
+getResumeGameFromServer(game).then(()=>initialize(game));
+
 
 // calculate the tiles' position on the X-axis
 gameScene.positionX = function(col)
@@ -117,7 +118,6 @@ gameScene.positionY = function(row)
 
 gameScene.preload = function ()
 {
-    getResumeGameFromServer(this)
     // Load all the assets
     this.load.image('exit', 'assets/out.png');
     this.load.image('tile', 'assets/tile.png');
@@ -135,7 +135,6 @@ gameScene.preload = function ()
 
 gameScene.create = function()
 {
-    await new Promise(resolve => setTimeout(resolve, 2000));
     // TODO: Get this values from the Database !
     //this.score = 0;
 
