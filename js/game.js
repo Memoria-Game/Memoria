@@ -44,7 +44,7 @@ function getResumeGameFromServer(game){
         game.score = responseText.score;
         game.numberOfBonusMap = responseText.yellowBonus;
         game.numberOfBonusLife = responseText.redBonus;
-        getNextStageFromServer(game)
+        return getNextStageFromServer(game)
      },
 
      error : function(resultat, statut, erreur){
