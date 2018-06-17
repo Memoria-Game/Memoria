@@ -99,7 +99,8 @@ function initialize(game) {
 }
 
 var game = new Phaser.Game(config);
-initialize(game);
+getResumeGameFromServer(game).then(() => initialize(game))
+
 
 // calculate the tiles' position on the X-axis
 gameScene.positionX = function(col)
@@ -130,7 +131,7 @@ gameScene.preload = function ()
     this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
     this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
     this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
-    getResumeGameFromServer(this)
+    
 }
 
 gameScene.create = function()
