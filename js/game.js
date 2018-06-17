@@ -26,13 +26,15 @@ function getNextStageFromServer(game){
      xhrFields: { withCredentials: true },
      success : function(responseText, statut){ 
         alert(responseText)
+        alert(statut)
         var obj = JSON.parse(responseText);
         game.stageNumber = obj.stageLevel;
         game.stage = obj.map;
      },
 
      error : function(resultat, statut, erreur){
-         alert(erreur, resultat)
+         alert(resultat)
+         alert(erreur)
      }
   })
 }
@@ -45,6 +47,7 @@ function getResumeGameFromServer(game){
      async: false,
      success : function(responseText, statut){ 
         alert(responseText)
+        alert(statut)
         var obj = JSON.parse(responseText);
         game.score = obj.score;
         game.numberOfBonusMap = obj.yelloBonus;
@@ -52,7 +55,8 @@ function getResumeGameFromServer(game){
      },
 
      error : function(resultat, statut, erreur){
-         alert(erreur, resultat)
+         alert(resultat)
+         alert(erreur)
      }
   })
 }
