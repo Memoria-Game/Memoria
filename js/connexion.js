@@ -73,5 +73,5 @@ function form_register(f) {
 function form_disconnect(){
     logout()
         .then(() => window.location.href = "index.html")
-        .fail(() => alert("Une erreur s'est produite"))
+        .fail(() => {alert("Une erreur s'est produite");window.location.href = "index.html";})
 }
