@@ -18,13 +18,13 @@ let config = {
     backgroundColor: '#FFF'
 };
 
-function getNextStageFromServer(game){
-    $.ajax("http://api.memoria.cf/game/nextStage", {
+function getNextStageFromServer(){
+    return $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-     success : function(responseText, statut){ 
-        alert(responseText)
+     success : function(responseText){ 
+        alert(responseText.stageLevel)
         alert(statut)
         var obj = JSON.parse(responseText);
         game.stageNumber = obj.stageLevel;
@@ -38,13 +38,17 @@ function getNextStageFromServer(game){
   })
 }
 
-function getResumeGameFromServer(game){
-     $.ajax("http://api.memoria.cf/game/resume", {
+function getResumeGameFromServer(){
+     return $.ajax("http://api.memoria.cf/game/resume", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-     success : function(responseText, statut){ 
+     success : function(responseText){ 
         alert(responseText)
+        alert(responseText.score)
+        alert(responseText.yelloBonus)
+        alert(responseText.redBonus)
+        alert(responseText.statut)
         alert(statut)
         var obj = JSON.parse(responseText);
         game.score = obj.score;
@@ -60,8 +64,7 @@ function getResumeGameFromServer(game){
 }
 
 function sendEndStage(dataLevel){
-  alert(dataLevel)
-  $.ajax("http://api.memoria.cf/game/endStage", {
+  return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
      data: dataLevel,
      contentType:"application/json; charset=utf-8",
