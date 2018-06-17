@@ -122,6 +122,7 @@ gameScene.preload = function ()
     this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
     this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
     this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
+    getResumeGameFromServer(this)
 }
 
 gameScene.create = function()
@@ -144,7 +145,6 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
-    getResumeGameFromServer(this)
     
     this.numBonus = 5;
 
@@ -169,6 +169,9 @@ gameScene.create = function()
         numberOfCols : this.stage[0].length,
         tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
     }
+    
+    console.log(this.options.numberOfRows);
+    console.log(this.options.numberOfCols);
 
     // Construct the array of tiled sprites
     for (var i = 0; i < this.options.numberOfRows; i++) {
@@ -206,7 +209,9 @@ gameScene.create = function()
             }
         }
     }
-
+    
+    alert(this.field);
+    
     // Create the labels
     this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
     this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
@@ -379,7 +384,7 @@ gameScene.win = function(){
     // Prepare the data for sending to the server
     dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
     dataEnd = JSON.stringify(dataEnd)
-    sendEndStage(dataEnd)
+    sendEndStage(dataEnd).then(() => getNextStageFromServer(this))
     
 }
 
@@ -396,11 +401,11 @@ gameScene.loose = function(){
     // Prepare the data for sending to the server
     dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
     dataEnd = JSON.stringify(dataEnd)
-    sendEndStage(dataEnd)
-    // restart game
-    this.time.delayedCall(500, function() {
+    sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
-    }, [], this);
+    }, [], this)));
+    // restart game
+    
 }
 
 gameScene.showMap = function(seconds){
