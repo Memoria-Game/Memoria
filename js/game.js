@@ -133,9 +133,12 @@ gameScene.preload = function ()
     this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 gameScene.create = function()
 {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await sleep(2000);
     // TODO: Get this values from the Database !
     //this.score = 0;
 
