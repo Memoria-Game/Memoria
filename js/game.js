@@ -93,9 +93,9 @@ function initialize(game) {
         });
     }
     
-    getResumeGameFromServer(this).then(()=> {window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize);
     if(game.isBooted) resize();
-    else game.events.once('boot', resize);});
+    else game.events.once('boot', resize);
 }
 
 var game = new Phaser.Game(config);
@@ -152,7 +152,7 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
-    
+    getResumeGameFromServer(this).then(() => {
     this.numBonus = 5;
 
     // Number of seconds we show the map in seconds, showtime ;) 
@@ -282,6 +282,7 @@ gameScene.create = function()
 
     // Launch the game 
     this.showMap(this.showTime);
+    });
 }
 
 
