@@ -218,8 +218,6 @@ gameScene.create = function()
         }
     }
     
-    alert(this.field);
-    
     // Create the labels
     this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
     this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
@@ -265,7 +263,7 @@ gameScene.create = function()
     }
 
     // Add the player
-    let coords_player = getIndexOfK(this.field, 4)
+    let coords_player = getIndexOfK(this.stage, 4)
     this.player = {
         sprite: this.add.sprite(gameScene.positionX(0), gameScene.positionY(2), 'player'),
         x: coords_player[0],
