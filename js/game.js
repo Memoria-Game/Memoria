@@ -63,6 +63,14 @@ function sendEndStage(dataLevel){
   })
 }
 
+function getIndexOfK(arr, k) {
+  for (var i = 0; i < arr.length; i++) {
+    var index = arr[i].indexOf(k);
+    if (index > -1) {
+      return [i, index];
+    }
+  }
+}
 
 // handle window size/resize
 function initialize(game) {
@@ -257,10 +265,11 @@ gameScene.create = function()
     }
 
     // Add the player
+    let coords_player = getIndexOfK(this.field, 4)
     this.player = {
         sprite: this.add.sprite(gameScene.positionX(0), gameScene.positionY(2), 'player'),
-        x: 0,
-        y: 2
+        x: coords_player[0],
+        y: coords_player[1]
     };
     this.player.sprite.setSize(this.options.tileSize, this.options.tileSize, true);
     this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
