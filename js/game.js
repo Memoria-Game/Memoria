@@ -289,96 +289,98 @@ gameScene.create = function()
 
 gameScene.update = function ()
 {
-    // Handle the keyboard inputs
-    if (this.canMove && !this.showingMap && !this.stageComplete) {
-        if (this.cursors.left.isDown)
-        {
-            if (this.player.x >0){
-                this.player.x = this.player.x - 1;
-                this.player.sprite.x = gameScene.positionX(this.player.x);
-            }
-        }
-        else if (this.cursors.right.isDown)
-        {
-            if (this.player.x < (this.options.numberOfCols-1)){
-                this.player.x = this.player.x + 1;
-                this.player.sprite.x = gameScene.positionX(this.player.x);
-            }
-        }
-        else if(this.cursors.up.isDown)
-        {
-            if (this.player.y > 0){
-                this.player.y = this.player.y - 1;
-                this.player.sprite.y = gameScene.positionY(this.player.y);
-            }
-        }
-        else if(this.cursors.down.isDown)
-        {
-            if (this.player.y < (this.options.numberOfRows - 1)){
-                this.player.y = this.player.y + 1;
-                this.player.sprite.y = gameScene.positionY(this.player.y);
-            }
-        }
-        else
-        {
-            
-        }
-    }
-
-    // Limit the player to one move when a key is Down
-    if(this.cursors.left.isUp && this.cursors.right.isUp && this.cursors.up.isUp && this.cursors.down.isUp)
-        this.canMove = true;
-    else
-        this.canMove = false;
-
-    // Handle the tiled value actions
-    if(!this.field[this.player.y][this.player.x].isActivate){
-        switch(this.field[this.player.y][this.player.x].value){
-            case EMPTY:
-                break;
-            case LIFE:
-                if(this.numberOfBonusLife < this.numBonus)
-                    this.lifes_bonus[this.numberOfBonusLife++].full.visible = 1;
-                break;
-            case SHOW:
-                if(this.numberOfBonusMap < this.numBonus)
-                    this.maps_bonus[this.numberOfBonusMap++].full.visible = 1;
-                break;
-            case WALL:
-                if(this.numberOfBonusLife == this.numBonus)
-                {
-                    // shake the camera
-                    this.cameras.main.shake(500);
-                    for(var i = 0; i < this.numBonus; i++)
-                        this.lifes_bonus[i].full.visible = 0;
-                    this.numberOfBonusLife = 0;
-                    this.numberOfRedBonusUsed++;
+    if(this.cursors){
+        // Handle the keyboard inputs
+        if (this.canMove && !this.showingMap && !this.stageComplete) {
+            if (this.cursors.left.isDown)
+            {
+                if (this.player.x >0){
+                    this.player.x = this.player.x - 1;
+                    this.player.sprite.x = gameScene.positionX(this.player.x);
                 }
-                else this.loose();
-                break;
-            case EXIT:
-                this.win();
-                break;
+            }
+            else if (this.cursors.right.isDown)
+            {
+                if (this.player.x < (this.options.numberOfCols-1)){
+                    this.player.x = this.player.x + 1;
+                    this.player.sprite.x = gameScene.positionX(this.player.x);
+                }
+            }
+            else if(this.cursors.up.isDown)
+            {
+                if (this.player.y > 0){
+                    this.player.y = this.player.y - 1;
+                    this.player.sprite.y = gameScene.positionY(this.player.y);
+                }
+            }
+            else if(this.cursors.down.isDown)
+            {
+                if (this.player.y < (this.options.numberOfRows - 1)){
+                    this.player.y = this.player.y + 1;
+                    this.player.sprite.y = gameScene.positionY(this.player.y);
+                }
+            }
+            else
+            {
+
+            }
         }
-    }
 
-    // Activate the current tile
-    this.field[this.player.y][this.player.x].tile_activated.visible = 1;
-    this.field[this.player.y][this.player.x].isActivate = true;
+        // Limit the player to one move when a key is Down
+        if(this.cursors.left.isUp && this.cursors.right.isUp && this.cursors.up.isUp && this.cursors.down.isUp)
+            this.canMove = true;
+        else
+            this.canMove = false;
 
-    // Win page case
-    if(this.stageComplete && this.spaceKey.isDown)
-        this.scene.restart();
+        // Handle the tiled value actions
+        if(!this.field[this.player.y][this.player.x].isActivate){
+            switch(this.field[this.player.y][this.player.x].value){
+                case EMPTY:
+                    break;
+                case LIFE:
+                    if(this.numberOfBonusLife < this.numBonus)
+                        this.lifes_bonus[this.numberOfBonusLife++].full.visible = 1;
+                    break;
+                case SHOW:
+                    if(this.numberOfBonusMap < this.numBonus)
+                        this.maps_bonus[this.numberOfBonusMap++].full.visible = 1;
+                    break;
+                case WALL:
+                    if(this.numberOfBonusLife == this.numBonus)
+                    {
+                        // shake the camera
+                        this.cameras.main.shake(500);
+                        for(var i = 0; i < this.numBonus; i++)
+                            this.lifes_bonus[i].full.visible = 0;
+                        this.numberOfBonusLife = 0;
+                        this.numberOfRedBonusUsed++;
+                    }
+                    else this.loose();
+                    break;
+                case EXIT:
+                    this.win();
+                    break;
+            }
+        }
 
-    // Bonus Map ready to use
-    if(this.numberOfBonusMap == this.numBonus){
-        this.showTextSpace.visible = 1;
-        if(this.spaceKey.isDown){
-            for(var i = 0; i < this.numBonus; i++)
-                this.maps_bonus[i].full.visible = 0;
-            this.numberOfBonusMap = 0;
-            this.showMap(this.showTime);
-            this.numberOfYellowBonusUsed++;
+        // Activate the current tile
+        this.field[this.player.y][this.player.x].tile_activated.visible = 1;
+        this.field[this.player.y][this.player.x].isActivate = true;
+
+        // Win page case
+        if(this.stageComplete && this.spaceKey.isDown)
+            this.scene.restart();
+
+        // Bonus Map ready to use
+        if(this.numberOfBonusMap == this.numBonus){
+            this.showTextSpace.visible = 1;
+            if(this.spaceKey.isDown){
+                for(var i = 0; i < this.numBonus; i++)
+                    this.maps_bonus[i].full.visible = 0;
+                this.numberOfBonusMap = 0;
+                this.showMap(this.showTime);
+                this.numberOfYellowBonusUsed++;
+            }
         }
     }
 
