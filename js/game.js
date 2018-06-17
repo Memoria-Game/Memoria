@@ -21,8 +21,6 @@ let config = {
 function getNextStageFromServer(game){
     $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
-     data: JSON.stringify({pseudo:username, email:mail, pwd:password, country:country}),
-     contentType:"application/json; charset=utf-8",
      crossDomain: true,
      async: false,
      xhrFields: { withCredentials: true },
@@ -42,8 +40,6 @@ function getNextStageFromServer(game){
 function getResumeGameFromServer(game){
      $.ajax("http://api.memoria.cf/game/resume", {
      method: 'GET',
-     data: JSON.stringify({pseudo:username, email:mail, pwd:password, country:country}),
-     contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true },
      async: false,
