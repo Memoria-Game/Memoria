@@ -169,6 +169,9 @@ gameScene.create = function()
         numberOfCols : this.stage[0].length,
         tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
     }
+    
+    console.log(options.numberOfRows);
+    console.log(options.numberOfCols);
 
     // Construct the array of tiled sprites
     for (var i = 0; i < this.options.numberOfRows; i++) {
@@ -206,7 +209,9 @@ gameScene.create = function()
             }
         }
     }
-
+    
+    alert(this.field);
+    
     // Create the labels
     this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
     this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
