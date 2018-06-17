@@ -18,7 +18,7 @@ let config = {
     backgroundColor: '#FFF'
 };
 
-function getNextStageFromServer(game, playerId){
+function getNextStageFromServer(game){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -31,7 +31,7 @@ function getNextStageFromServer(game, playerId){
   xhttp.send();
 }
 
-function getResumeGameFromServer(game, playerId){
+function getResumeGameFromServer(game){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -45,7 +45,7 @@ function getResumeGameFromServer(game, playerId){
   xhttp.send();
 }
 
-function sendEndStage(playerId, dataLevel){
+function sendEndStage(dataLevel){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/game/endStage", true);
   xhttp.send(dataLevel);
@@ -132,6 +132,10 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
+    
+    getNextStageFromServer(this)
+    getResumeGameFromServer(this)
+    
     this.numBonus = 5;
 
     // Number of seconds we show the map in seconds, showtime ;) 
@@ -151,9 +155,9 @@ gameScene.create = function()
     // Display options
     this.options = {
         tileSpacing : -2.5,
-        numberOfRows : stage.length,
-        numberOfCols : stage[0].length,
-        tileSize : Math.min(config.default_width/2.5/stage[0].length, config.default_height/1.2/stage.length)
+        numberOfRows : this.stage.length,
+        numberOfCols : this.stage[0].length,
+        tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
     }
 
     // Construct the array of tiled sprites
@@ -162,7 +166,7 @@ gameScene.create = function()
         for (var j = 0; j < this.options.numberOfCols; j++) {
 
             //Value of the card
-            var tile_value = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), stage[i][j]);
+            var tile_value = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), this.stage[i][j]);
             tile_value.setSize(this.options.tileSize,this.options.tileSize,true);
             tile_value.setDisplaySize(this.options.tileSize, this.options.tileSize);
             tile_value.visible = 1;
@@ -187,7 +191,7 @@ gameScene.create = function()
                 tile_value: tile_value,
                 tile: tile,
                 tile_activated: tile_activated,
-                value: stage[i][j],
+                value: this.stage[i][j],
                 isActivate: false
             }
         }
@@ -362,6 +366,10 @@ gameScene.win = function(){
     this.winText.visible = 1;
     this.restartText.visible = 1;
     this.timerEvent.destroy();
+    // Prepare the data for sending to the server
+    dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
+    dataEnd = JSON.stringify(dataEnd)
+    sendEndStage(dataEnd)
     
 }
 
@@ -377,8 +385,8 @@ gameScene.loose = function(){
 
     // Prepare the data for sending to the server
     dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
-    
-    //sendEndStage(playerId, dataEnd)
+    dataEnd = JSON.stringify(dataEnd)
+    sendEndStage(dataEnd)
     // restart game
     this.time.delayedCall(500, function() {
         this.scene.restart();

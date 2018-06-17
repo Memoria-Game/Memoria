@@ -85,13 +85,13 @@
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-4">
-            Number of Red Bonus used:
-            <div id="bar1"></div>
-            Number of yellow Bonus used:
-            <div id="bar2"></div>
             Best Score:
+            <div id="bar1"></div>
+            Average Score:
+            <div id="bar2"></div>
+            Max Stage:
             <div id="bar3"></div>
-            blabla
+            Average Stage:
             <div id="bar4"></div>
 
             <script type="text/javascript">
@@ -222,43 +222,61 @@
           <div class="col-md-8">
             <canvas id="scores" width="400" height="200"></canvas>
             <script>
-                var ctx = document.getElementById("scores");
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ["18/10/18", "18/10/18", "19/10/18", "20/10/18", "21/10/18", "22/10/18"],
-                        datasets: [{
-                            label: 'Score',
-                            data: [12, 19, 3, 5, 25, 30],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
+                
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var obj = JSON.parse(this.responseText);
+                        var dates = [];
+                        var scores = [];
+                        for (data in obj){
+                            dates.push(data.date);
+                            scores.psuh(data.score)
                         }
+                            
+                        
+                        var ctx = document.getElementById("scores");
+                        
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: dates,//["18/10/18", "18/10/18", "19/10/18", "20/10/18", "21/10/18", "22/10/18"],
+                                datasets: [{
+                                    label: 'Score',
+                                    data: score, //[12, 19, 3, 5, 25, 30],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
                     }
-                });
+                };
+                xhttp.open("GET", "/statisctics/personnalScore", false);
+                xhttp.send();
                 </script>
           </div>
         </div>
