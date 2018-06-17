@@ -19,39 +19,57 @@ let config = {
 };
 
 function getNextStageFromServer(game){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        alert(this.responseText)
-        var obj = JSON.parse(this.responseText);
+    $.ajax("http://api.memoria.cf/game/nextStage", {
+     method: 'GET',
+     data: JSON.stringify({pseudo:username, email:mail, pwd:password, country:country}),
+     contentType:"application/json; charset=utf-8",
+     crossDomain: true,
+     async: false,
+     xhrFields: { withCredentials: true },
+     success : function(responseText, statut){ 
+        alert(responseText)
+        var obj = JSON.parse(responseText);
         game.stageNumber = obj.stageLevel;
         game.stage = obj.map;
-    }
-  };
-  xhttp.open("GET", "http://api.memoria.cf/game/nextStage", false);
-  xhttp.send();
+     },
+
+     error : function(resultat, statut, erreur){
+         alert(erreur, resultat)
+     }
+  })
 }
 
 function getResumeGameFromServer(game){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        alert(this.responseText)
-        var obj = JSON.parse(this.responseText);
+     $.ajax("http://api.memoria.cf/game/resume", {
+     method: 'GET',
+     data: JSON.stringify({pseudo:username, email:mail, pwd:password, country:country}),
+     contentType:"application/json; charset=utf-8",
+     crossDomain: true,
+     xhrFields: { withCredentials: true },
+     async: false,
+     success : function(responseText, statut){ 
+        alert(responseText)
+        var obj = JSON.parse(responseText);
         game.score = obj.score;
         game.numberOfBonusMap = obj.yelloBonus;
         game.numberOfBonusLife = obj.redBonus;
-    }
-  };
-  xhttp.open("GET", "http://api.memoria.cf/game/resume", false);
-  xhttp.send();
+     },
+
+     error : function(resultat, statut, erreur){
+         alert(erreur, resultat)
+     }
+  })
 }
 
 function sendEndStage(dataLevel){
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://api.memoria.cf/game/endStage", true);
-  xhttp.send(dataLevel);
   alert(dataLevel)
+  $.ajax("http://api.memoria.cf/game/endStage", {
+     method: 'POST',
+     data: dataLevel,
+     contentType:"application/json; charset=utf-8",
+     crossDomain: true,
+     xhrFields: { withCredentials: true }
+  })
 }
 
 
