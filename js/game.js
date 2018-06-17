@@ -18,47 +18,37 @@ let config = {
     backgroundColor: '#FFF'
 };
 
-function getNextStageFromServer(){
+function getNextStageFromServer(game){
     return $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
      success : function(responseText){ 
-        alert(responseText.stageLevel)
-        alert(statut)
-        var obj = JSON.parse(responseText);
-        game.stageNumber = obj.stageLevel;
-        game.stage = obj.map;
+        game.stageNumber = responseText.stageLevel;
+        game.stage = responseText.map;
+        alert(responseText.map);
      },
 
      error : function(resultat, statut, erreur){
-         alert(resultat)
-         alert(erreur)
+         alert(resultat + erreur)
      }
   })
 }
 
-function getResumeGameFromServer(){
+function getResumeGameFromServer(game){
      return $.ajax("http://api.memoria.cf/game/resume", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
      success : function(responseText){ 
-        alert(responseText)
-        alert(responseText.score)
-        alert(responseText.yelloBonus)
-        alert(responseText.redBonus)
-        alert(responseText.statut)
-        alert(statut)
-        var obj = JSON.parse(responseText);
-        game.score = obj.score;
-        game.numberOfBonusMap = obj.yelloBonus;
-        game.numberOfBonusLife = obj.redBonus;
+        game.score = responseText.score;
+        game.numberOfBonusMap = responseText.yellowBonus;
+        game.numberOfBonusLife = responseText.redBonus;
+        getNextStageFromServer(game)
      },
 
      error : function(resultat, statut, erreur){
-         alert(resultat)
-         alert(erreur)
+         alert(resultat + erreur)
      }
   })
 }
@@ -155,8 +145,6 @@ gameScene.create = function()
 
     // Number of bonus needed to actualy have one
     getResumeGameFromServer(this)
-    getNextStageFromServer(this)
-    
     
     this.numBonus = 5;
 
