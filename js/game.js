@@ -19,49 +19,42 @@ let config = {
 };
 
 function getNextStageFromServer(game){
-    $.ajax("http://api.memoria.cf/game/nextStage", {
+    return $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-     success : function(responseText, statut){ 
-        alert(responseText)
-        alert(statut)
-        var obj = JSON.parse(responseText);
-        game.stageNumber = obj.stageLevel;
-        game.stage = obj.map;
+     success : function(responseText){ 
+        game.stageNumber = responseText.stageLevel;
+        game.stage = responseText.map;
+        alert(responseText.map);
      },
 
      error : function(resultat, statut, erreur){
-         alert(resultat)
-         alert(erreur)
+         alert(resultat + erreur)
      }
   })
 }
 
 function getResumeGameFromServer(game){
-     $.ajax("http://api.memoria.cf/game/resume", {
+     return $.ajax("http://api.memoria.cf/game/resume", {
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-     success : function(responseText, statut){ 
-        alert(responseText)
-        alert(statut)
-        var obj = JSON.parse(responseText);
-        game.score = obj.score;
-        game.numberOfBonusMap = obj.yelloBonus;
-        game.numberOfBonusLife = obj.redBonus;
+     success : function(responseText){ 
+        game.score = responseText.score;
+        game.numberOfBonusMap = responseText.yellowBonus;
+        game.numberOfBonusLife = responseText.redBonus;
+        getNextStageFromServer(game)
      },
 
      error : function(resultat, statut, erreur){
-         alert(resultat)
-         alert(erreur)
+         alert(resultat + erreur)
      }
   })
 }
 
 function sendEndStage(dataLevel){
-  alert(dataLevel)
-  $.ajax("http://api.memoria.cf/game/endStage", {
+  return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
      data: dataLevel,
      contentType:"application/json; charset=utf-8",
@@ -152,8 +145,6 @@ gameScene.create = function()
 
     // Number of bonus needed to actualy have one
     getResumeGameFromServer(this)
-    getNextStageFromServer(this)
-    
     
     this.numBonus = 5;
 
