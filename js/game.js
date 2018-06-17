@@ -153,9 +153,9 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
-    
-    getNextStageFromServer(this)
     getResumeGameFromServer(this)
+    getNextStageFromServer(this)
+    
     
     this.numBonus = 5;
 
