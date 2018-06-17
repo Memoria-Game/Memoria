@@ -19,36 +19,39 @@ let config = {
 };
 
 function getNextStageFromServer(game){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var obj = JSON.parse(this.responseText);
+    var xdr = new XDomainRequest(); 
+
+    xdr.onload = function() {
+        alert(xdr.responseText);
+        var obj = JSON.parse(xdr.responseText);
         game.stageNumber = obj.stageLevel;
         game.stage = obj.map;
     }
-  };
-  xhttp.open("GET", "http://api.memoria.cf/game/nextStage", false);
-  xhttp.send();
+
+    xdr.open("GET", "http://api.memoria.cf/game/nextStage", false);
+    xdr.send();
 }
 
 function getResumeGameFromServer(game){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var obj = JSON.parse(this.responseText);
+    var xdr = new XDomainRequest(); 
+
+    xdr.onload = function() {
+        alert(xdr.responseText);
+        var obj = JSON.parse(xdr.responseText);
         game.score = obj.score;
         game.numberOfBonusMap = obj.yelloBonus;
         game.numberOfBonusLife = obj.redBonus;
     }
-  };
-  xhttp.open("GET", "http://api.memoria.cf/game/resume", false);
-  xhttp.send();
+
+    xdr.open("GET", "http://api.memoria.cf/game/resume", false);
+    xdr.send();
 }
 
 function sendEndStage(dataLevel){
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "http://api.memoria.cf/game/endStage", true);
-  xhttp.send(dataLevel);
+    var xdr = new XDomainRequest(); 
+
+    xdr.open("POST", "http://api.memoria.cf/game/endStage", true);
+    xdr.send(dataLevel);
 }
 
 
