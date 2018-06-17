@@ -152,7 +152,7 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
-    getResumeGameFromServer(this).then(() => {
+    getResumeGameFromServer(this).done(() => {
     this.numBonus = 5;
 
     // Number of seconds we show the map in seconds, showtime ;) 
