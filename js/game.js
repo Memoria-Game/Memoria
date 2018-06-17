@@ -27,7 +27,7 @@ function getNextStageFromServer(game){
         game.stage = obj.map;
     }
   };
-  xhttp.open("GET", "/game/nextStage", false);
+  xhttp.open("GET", "http://api.memoria.cf/game/nextStage", false);
   xhttp.send();
 }
 
@@ -41,13 +41,13 @@ function getResumeGameFromServer(game){
         game.numberOfBonusLife = obj.redBonus;
     }
   };
-  xhttp.open("GET", "/game/resume", false);
+  xhttp.open("GET", "http://api.memoria.cf/game/resume", false);
   xhttp.send();
 }
 
 function sendEndStage(dataLevel){
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/game/endStage", true);
+  xhttp.open("POST", "http://api.memoria.cf/game/endStage", true);
   xhttp.send(dataLevel);
 }
 
