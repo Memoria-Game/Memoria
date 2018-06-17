@@ -5,9 +5,9 @@ function signin(username, password) {
      contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true }
-  })
+  })/*
   .fail((msg) => console.log("error occured " + msg.responseText))
-  .then((msg) => console.log(msg));
+  .then((msg) => console.log(msg));*/
    
 }
 
