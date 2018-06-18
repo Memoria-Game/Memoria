@@ -255,6 +255,7 @@ gameScene.create = function()
             this.stageNumber = data2.stageLevel;
             this.stage = data2.map;
             this.createLevel();
+            this.restarting = true;
             });
     });
 }
