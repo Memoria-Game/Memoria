@@ -358,7 +358,7 @@ gameScene.update = function ()
         }
         
         // Win page case
-        if(!this.restarting && this.spaceKey.isDown){
+        if(this.stageComplete && !this.restarting && this.spaceKey.isDown){
             this.restarting = true;
             this.scene.restart();
         }

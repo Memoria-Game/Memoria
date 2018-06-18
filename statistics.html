@@ -249,6 +249,8 @@
                   one from current row and one from the next: */
                   x = parseInt(rows[i].getElementsByTagName("TD")[1].innerHTML);
                   y = parseInt(rows[i + 1].getElementsByTagName("TD")[1].innerHTML);
+                  console.log(x);
+                  console.log(y);
                   // Check if the two rows should switch place:
                   if (x > y) {
                     // If so, mark as a switch and break the loop:
