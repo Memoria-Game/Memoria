@@ -53,7 +53,17 @@
               showTooltip: true,
               scaleColors: ['#C8EEFF', '#006491'],
               values: sample_data,
-              normalizeFunction: 'polynomial'
+              normalizeFunction: 'polynomial',
+              onRegionClick: function(element, code, region)
+                {
+                    var message = 'You clicked "'
+                        + region
+                        + '" which has the code: '
+                        + code.toUpperCase();
+
+                    alert(message);
+                }
+                
             });
           });
         </script>
