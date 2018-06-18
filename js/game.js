@@ -347,7 +347,7 @@ gameScene.update = function ()
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
             this.showTextSpace.visible = 1;
-            if(this.spaceKey.isDown && !this.stageComplete){
+            if(this.spaceKey.isDown && !this.restarting){
                 for(var i = 0; i < this.numBonus; i++)
                     this.maps_bonus[i].full.visible = 0;
                 this.numberOfBonusMap = 0;
@@ -357,8 +357,8 @@ gameScene.update = function ()
         }
         
         // Win page case
-        if(this.stageComplete && this.spaceKey.isDown){
-            this.stageComplete = false;
+        if(!this.restarting && this.spaceKey.isDown){
+            this.restarting = true;
             this.scene.restart();
         }
     }
