@@ -31,3 +31,21 @@ function addFriend(username){
      xhrFields: { withCredentials: true }
   })
 }
+
+function friends_data(form){
+    getFriendScores().then((data) =>{
+        let rows = $(form).find("tbody")
+        console.log(data)
+        let elems = []
+        let id = 1
+        for(d in data){
+            elem = "<tr><th scope=\"row\">" + id +
+                "</th><td>" + d.name + 
+                "</td><td>" + d.bestScore + 
+                "</td><td>" + d.maxLevel + "</td></tr>"
+            rows.append(elem)
+            id += 1
+        }
+
+    } )
+}
