@@ -101,13 +101,13 @@ gameScene.preload = function ()
 {
     
     // Load all the assets
-    this.load.image('exit', 'assets/out.png');
+    this.load.image(EXIT, 'assets/out.png');
     this.load.image('tile', 'assets/tile.png');
     this.load.image('tile_activated', 'assets/tile_activated.png');
     this.load.image('player', 'assets/player.png');
-    this.load.image('wall', 'assets/wall.png');
-    this.load.image('life', 'assets/life_bonus.png');
-    this.load.image('show', 'assets/map_bonus.png');
+    this.load.image(WALL, 'assets/wall.png');
+    this.load.image(LIFE, 'assets/life_bonus.png');
+    this.load.image(SHOW, 'assets/map_bonus.png');
     //this.load.image('background', 'assets/background.png');
     this.load.image('life_bonus_full', 'assets/bonus_life_full.png');
     this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
