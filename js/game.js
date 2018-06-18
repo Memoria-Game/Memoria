@@ -39,7 +39,6 @@ function sendEndStage(dataLevel){
     return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
      data: JSON.stringify(dataLevel),
-     headers: {  'Access-Control-Allow-Origin': 'http://memoria.cf' }
      contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true }
