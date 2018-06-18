@@ -97,54 +97,9 @@ gameScene.positionY = function(row)
     return row * (this.options.tileSize + this.options.tileSpacing) + this.options.tileSize / 2 + this.options.tileSpacing + offset;
 }
 
-gameScene.preload = function ()
-{
-    
-    // Load all the assets
-    this.load.image(EXIT, 'assets/out.png');
-    this.load.image(EMPTY, 'assets/tile.png');
-    this.load.image('tile_activated', 'assets/tile_activated.png');
-    this.load.image('player', 'assets/player.png');
-    this.load.image(WALL, 'assets/wall.png');
-    this.load.image(LIFE, 'assets/life_bonus.png');
-    this.load.image(SHOW, 'assets/map_bonus.png');
-    //this.load.image('background', 'assets/background.png');
-    this.load.image('life_bonus_full', 'assets/bonus_life_full.png');
-    this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
-    this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
-    this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
-}
 
-gameScene.create = function()
-{
-    // TODO: Get this values from the Database !
-    //this.score = 0;
-
-    //this.stageNumber = 0;
-
-    /*let stage = [[SHOW,LIFE,EMPTY,WALL,EMPTY,EXIT,EMPTY,EMPTY],
-                 [EMPTY,SHOW,EMPTY,WALL,LIFE,WALL,EMPTY,EMPTY],
-                 [EMPTY,WALL,EMPTY,WALL,WALL,EMPTY,EMPTY,EMPTY],
-                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL],
-                 [SHOW,WALL,EMPTY,WALL,EMPTY,EMPTY,WALL,EMPTY],
-                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL,EMPTY,EMPTY],
-                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,SHOW],
-                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,EMPTY,WALL,WALL]
-                 ];*/
-
-    //this.bestScore = 0;
-
-    // Number of bonus needed to actualy have one
-    
-    getResumeGameFromServer().then((data)=>{
-        this.score = data.score;
-        this.numberOfBonusMap = data.yellowBonus;
-        this.numberOfBonusLife = data.redBonus;
-        getNextStageFromServer().then((data2) => {
-            this.stageNumber = data2.stageLevel;
-            this.stage = data2.map;
-        
-            this.numBonus = 5;
+gameScene.createLevel = function(){
+    this.numBonus = 5;
 
             // Number of seconds we show the map in seconds, showtime ;) 
             this.showTime = 3;
@@ -275,6 +230,56 @@ gameScene.create = function()
 
             // Launch the game 
             this.showMap(this.showTime);
+}
+
+gameScene.preload = function ()
+{
+    
+    // Load all the assets
+    this.load.image(EXIT, 'assets/out.png');
+    this.load.image(EMPTY, 'assets/tile.png');
+    this.load.image('tile_activated', 'assets/tile_activated.png');
+    this.load.image('player', 'assets/player.png');
+    this.load.image(WALL, 'assets/wall.png');
+    this.load.image(LIFE, 'assets/life_bonus.png');
+    this.load.image(SHOW, 'assets/map_bonus.png');
+    //this.load.image('background', 'assets/background.png');
+    this.load.image('life_bonus_full', 'assets/bonus_life_full.png');
+    this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
+    this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
+    this.load.image('map_bonus_empty', 'assets/bonus_map_empty.png');
+}
+
+gameScene.create = function()
+{
+    // TODO: Get this values from the Database !
+    //this.score = 0;
+
+    //this.stageNumber = 0;
+
+    /*let stage = [[SHOW,LIFE,EMPTY,WALL,EMPTY,EXIT,EMPTY,EMPTY],
+                 [EMPTY,SHOW,EMPTY,WALL,LIFE,WALL,EMPTY,EMPTY],
+                 [EMPTY,WALL,EMPTY,WALL,WALL,EMPTY,EMPTY,EMPTY],
+                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL],
+                 [SHOW,WALL,EMPTY,WALL,EMPTY,EMPTY,WALL,EMPTY],
+                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL,EMPTY,EMPTY],
+                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,SHOW],
+                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,EMPTY,WALL,WALL]
+                 ];*/
+
+    //this.bestScore = 0;
+
+    // Number of bonus needed to actualy have one
+    
+    getResumeGameFromServer().then((data)=>{
+        this.alreadyConnected = true;
+        this.score = data.score;
+        this.numberOfBonusMap = data.yellowBonus;
+        this.numberOfBonusLife = data.redBonus;
+        getNextStageFromServer().then((data2) => {
+            this.stageNumber = data2.stageLevel;
+            this.stage = data2.map;
+            this.createLevel();
             });
         });
 }
