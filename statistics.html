@@ -102,13 +102,13 @@
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-4">
-            Best Score:
+            <h5 class= " text-center text-uppercase text-secondary mb-0">Best Score : </h5>
             <div id="best-score"></div>
-            Average Score:
+            <h5 class= " text-center text-uppercase text-secondary mb-0">Average Score: </h5>
             <div id="average-score"></div>
-            Max Stage:
+            <h5 class= " text-center text-uppercase text-secondary mb-0">Max Stage: </h5>
             <div id="max-stage"></div>
-            Average Stage:
+            <h5 class= " text-center text-uppercase text-secondary mb-0">Average Stage: </h5>
             <div id="average-stage"></div>
 
             <script type="text/javascript">
@@ -116,10 +116,10 @@
                 window.onload = function onLoad() {
                     getPersonnalStat().then((stats) =>{
                          //# {totYellowBonusUsed:10, totRedBonusUsed:12, bestScore: 19, maxLevel, averageLevel, averageScore}
-                         document.getElementById("best-score").innerHTML = stats.bestScore;
-                         document.getElementById("average-score").innerHTML = stats.averageScore;
-                         document.getElementById("max-stage").innerHTML = stats.maxLevel;
-                         document.getElementById("average-stage").innerHTML = stats.averageLevel;
+                         document.getElementById("best-score").innerHTML = "<h4>" + stats.bestScore + "</h4>";
+                         document.getElementById("average-score").innerHTML = "<h4>" + stats.averageScore + "</h4>";
+                         document.getElementById("max-stage").innerHTML = "<h4>" + stats.maxLevel + "</h4>";
+                         document.getElementById("average-stage").innerHTML = "<h4>" + stats.averageLevel + "</h4>";
                     });
                 }
             </script>
