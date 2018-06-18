@@ -346,10 +346,12 @@ gameScene.update = function ()
         // Activate the current tile
         this.field[this.player.y][this.player.x].tile_activated.visible = 1;
         this.field[this.player.y][this.player.x].isActivate = true;
-
+        
         // Win page case
-        if(this.stageComplete && this.spaceKey.isDown)
+        if(!this.restarting && this.stageComplete && this.spaceKey.isDown)
+            this.restarting = true;
             this.scene.restart();
+            
 
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
