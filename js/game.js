@@ -344,22 +344,22 @@ gameScene.update = function ()
         this.field[this.player.y][this.player.x].tile_activated.visible = 1;
         this.field[this.player.y][this.player.x].isActivate = true;
         
-        // Win page case
-        if(this.stageComplete && this.spaceKey.isDown){
-            this.stageComplete = false;
-            this.scene.restart();
-        }
-
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
             this.showTextSpace.visible = 1;
-            if(this.spaceKey.isDown){
+            if(this.spaceKey.isDown && !this.stageComplete){
                 for(var i = 0; i < this.numBonus; i++)
                     this.maps_bonus[i].full.visible = 0;
                 this.numberOfBonusMap = 0;
                 this.showMap(this.showTime);
                 this.numberOfYellowBonusUsed++;
             }
+        }
+        
+        // Win page case
+        if(this.stageComplete && this.spaceKey.isDown){
+            this.stageComplete = false;
+            this.scene.restart();
         }
     }
 }
