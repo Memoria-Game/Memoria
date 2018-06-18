@@ -79,7 +79,7 @@ function sortTable() {
                   console.log(x);
                   console.log(y);
                   // Check if the two rows should switch place:
-                  if (x < y) {
+                  if (x > y) {
                     // If so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
