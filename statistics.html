@@ -86,7 +86,7 @@
     <!-- Progression Section -->
     <section class="" id="progression">
       <div class="container">
-        <center><h2 class= " text-center text-uppercase text-secondary mb-0">You're progression</h2></center>
+        <center><h2 class= " text-center text-uppercase text-secondary mb-0">Your progression</h2></center>
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-4">
@@ -100,8 +100,20 @@
             <div id="bar4"></div>
 
             <script type="text/javascript">
+                
                 window.onload = function onLoad() {
-                var bar1 = new ProgressBar.Line('#bar1', {
+                    getPersonnalStat().then((stats) =>{
+                         //# {totYellowBonusUsed:10, totRedBonusUsed:12, bestScore: 19, maxLevel, averageLevel, averageScore}
+                         var totYellowBonusUsed = stats.totYellowBonusUsed;
+                         var totRedBonusUsed = stats.totRedBonusUsed;
+                         var bestScore = stats.bestScore;
+                         var maxLevel = stats.maxLevel;
+                         var averageLevel = stats.averageLevel;
+                         var averageScore = stats.averageScore;
+                        console.log(totYellowBonusUsed);
+                    });
+                }
+                /*var bar1 = new ProgressBar.Line('#bar1', {
                     strokeWidth: 4,
                       easing: 'easeInOut',
                       duration: 1400,
@@ -221,7 +233,7 @@
                 bar2.animate(0.8);  // Value from 0.0 to 1.0
                 bar3.animate(0.9);  // Value from 0.0 to 1.0
                 bar4.animate(0.5);  // Value from 0.0 to 1.0
-                };
+                };*/
             </script>
           </div>
           <div class="col-md-8">
@@ -333,7 +345,7 @@
     <section class="portfolio" id="portfolio">
       <div class="container">
         <h2 class="text-center text-uppercase">Your friends</h2>
-        <hr class="star-light mb-5">
+        <hr class="star-dark mb-5">
         <div class="row">
 
           <div class="col-md-12">
