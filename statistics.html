@@ -289,7 +289,7 @@
     </section>
 
     <!-- Countries Section -->
-    <section class="bg-primary text-white mb-0" id="about">
+    <section class="bg-primary text-white mb-0" id="portfolio">
       <div class="container">
         <center><h2 class="text-center text-uppercase text-white">Best scores by country</h2></center>
         <hr class="star-light mb-5">
@@ -329,54 +329,10 @@
     </section>
 
 
-   <!-- Credits Section -->
-    <section class="portfolio" id="portfolio">
+    <!-- Friends Section -->
+    <section class="bg-primary mb-0" id="about">
       <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Compare To others</h2>
-        <hr class="star-dark mb-5">
-        <div class="row">
-          <canvas id="comparePieChart"></canvas>
-          <script type="text/javascript">
-                data = {
-                datasets: [{
-                    data: [10, 20, 30],
-                    backgroundColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ]
-                }],
-
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                    'You',
-                    'Players in your country',
-                    'Players in the world'
-                ]
-            };
-
-            var ctx = document.getElementById("comparePieChart");
-              // And for a doughnut chart
-                var myDoughnutChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: data,
-                    options: {
-                        
-                    }
-                });
-
-          </script>
-        </div>
-      </div>
-    </section>
-
-    <!-- Countries Section -->
-    <section class="bg-primary text-white mb-0" id="about">
-      <div class="container">
-        <h2 class="text-center text-uppercase text-white">Your friends</h2>
+        <h2 class="text-center text-uppercase">Your friends</h2>
         <hr class="star-light mb-5">
         <div class="row">
 
