@@ -161,31 +161,8 @@ gameScene.createLevel = function(){
                     isActivate: false
                 }
             }
-        }
-
-        // Create the labels
-        this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
-        this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-        this.timeText = this.add.text(15, config.default_height - 50, 'Time: ' + this.totalTime + 's', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-        this.lifeText = this.add.text(config.default_width - 250, 15, 'Life Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-        this.showText = this.add.text(config.default_width - 250, 150, 'Map Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-        this.showTextSpace = this.add.text(config.default_width - 250, 240, "Press SPACE to see the map", { fontSize: '12px', fill: '#000' });
-        this.countdownText = this.add.text(config.default_width/2 - 40, config.default_height/2 - 40, '', { fontSize: '100px', fill: '#FFF' });
-        this.restartText = this.add.text(config.default_width/2 - 145, config.default_height/2 + 64, "Press SPACE for next Stage", { fontSize: '20px', fill: '#AAA' });
-
-        // Hide not needed labels
-        this.restartText.visible = 0;
-        this.countdownText.visible = 0;
-        this.showTextSpace.visible = 0;
-
-        // Timer label 
-        this.timerEvent = this.time.addEvent({
-            delay: 1000,
-            callback: function(){this.timeText.setText('Time: ' + ++this.totalTime + ' s')},
-            callbackScope: this,
-            loop: true
-        });
-
+        } 
+    
         // Create the bonus count sprites
         this.lifes_bonus = [];
         this.maps_bonus = [];
@@ -216,9 +193,30 @@ gameScene.createLevel = function(){
         this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
         this.player.visible = 1;
     
-        // Add the win Text after the player otherwise overlapp
+        // Create the labels
         this.winText = this.add.text(config.default_width/2 - 185, config.default_height/2 - 40, "You Win!", { fontSize: '80px', fill: '#FFF' });
+        this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
+        this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.timeText = this.add.text(15, config.default_height - 50, 'Time: ' + this.totalTime + 's', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.lifeText = this.add.text(config.default_width - 250, 15, 'Life Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.showText = this.add.text(config.default_width - 250, 150, 'Map Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.showTextSpace = this.add.text(config.default_width - 250, 240, "Press SPACE to see the map", { fontSize: '12px', fill: '#000' });
+        this.countdownText = this.add.text(config.default_width/2 - 40, config.default_height/2 - 40, '', { fontSize: '100px', fill: '#FFF' });
+        this.restartText = this.add.text(config.default_width/2 - 145, config.default_height/2 + 64, "Press SPACE for next Stage", { fontSize: '20px', fill: '#AAA' });
+
+        // Hide not needed labels
         this.winText.visible = 0;
+        this.restartText.visible = 0;
+        this.countdownText.visible = 0;
+        this.showTextSpace.visible = 0;
+
+        // Timer label 
+        this.timerEvent = this.time.addEvent({
+            delay: 1000,
+            callback: function(){this.timeText.setText('Time: ' + ++this.totalTime + ' s')},
+            callbackScope: this,
+            loop: true
+        });
 
         this.canMove = false;
 
