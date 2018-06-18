@@ -1,5 +1,5 @@
 // Tiles possible values
-let EMPTY = 0,
+let EMPTY = 6,
     WALL = 1,
     LIFE = 2,
     SHOW = 3,
@@ -102,7 +102,7 @@ gameScene.preload = function ()
     
     // Load all the assets
     this.load.image(EXIT, 'assets/out.png');
-    this.load.image("tile", 'assets/tile.png');
+    this.load.image(EMPTY, 'assets/tile.png');
     this.load.image('tile_activated', 'assets/tile_activated.png');
     this.load.image('player', 'assets/player.png');
     this.load.image(WALL, 'assets/wall.png');
