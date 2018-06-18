@@ -45,7 +45,7 @@ function sortTable() {
   while (switching) {
     // Start by saying: no switching is done:
     switching = false;
-    rows = table.getElementsByTagName("TR");
+    rows = table.getElementsByTagName("tr");
     /* Loop through all table rows (except the
     first, which contains table headers): */
     for (i = 1; i < (rows.length - 1); i++) {
@@ -53,8 +53,8 @@ function sortTable() {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      x = parseInt(rows[i].getElementsByTagName("TD")[2].innerHTML);
-      y = parseInt(rows[i + 1].getElementsByTagName("TD")[2].innerHTML);
+      x = parseInt(rows[i].getElementsByTagName("td")[2].innerHTML);
+      y = parseInt(rows[i + 1].getElementsByTagName("td")[2].innerHTML);
       console.log(x);
       console.log(y);
       // Check if the two rows should switch place:
