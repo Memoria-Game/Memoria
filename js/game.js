@@ -19,6 +19,7 @@ let config = {
     backgroundColor: '#FFF'
 };
 
+// API Communications
 function getNextStageFromServer(){
     return $.ajax("http://api.memoria.cf/game/nextStage", {
      method: 'GET',
@@ -45,6 +46,7 @@ function sendEndStage(dataLevel){
     });
 }
 
+// Find the position of an element in an array
 function getIndexOfK(arr, k) {
   for (var i = 0; i < arr.length; i++) {
     var index = arr[i].indexOf(k);
@@ -54,7 +56,7 @@ function getIndexOfK(arr, k) {
   }
 }
 
-// handle window size/resize
+// Handle window size/resize then boot the game
 function initialize(game) {
     function resize() {
         var w = window.innerWidth;
@@ -80,6 +82,7 @@ function initialize(game) {
     else game.events.once('boot', resize);
 }
 
+
 var game = new Phaser.Game(config);
 initialize(game);
 
@@ -97,7 +100,7 @@ gameScene.positionY = function(row)
     return row * (this.options.tileSize + this.options.tileSpacing) + this.options.tileSize / 2 + this.options.tileSpacing + offset;
 }
 
-
+// Create all the elements to show in the stage
 gameScene.createLevel = function(){
     this.numBonus = 5;
 
@@ -204,8 +207,6 @@ gameScene.createLevel = function(){
                 this.maps_bonus[i].full.visible = 0;
         }
 
-        console.log(this.stage);
-
         // Add the player
         let coords_player = getIndexOfK(this.stage, ENTRY)
         this.player = {
@@ -229,7 +230,6 @@ gameScene.createLevel = function(){
 
 gameScene.preload = function ()
 {
-    
     // Load all the assets
     this.load.image(EXIT, 'assets/out.png');
     this.load.image(EMPTY, 'assets/tile.png');
@@ -238,7 +238,6 @@ gameScene.preload = function ()
     this.load.image(WALL, 'assets/wall.png');
     this.load.image(LIFE, 'assets/life_bonus.png');
     this.load.image(SHOW, 'assets/map_bonus.png');
-    //this.load.image('background', 'assets/background.png');
     this.load.image('life_bonus_full', 'assets/bonus_life_full.png');
     this.load.image('life_bonus_empty', 'assets/bonus_life_empty.png');
     this.load.image('map_bonus_full', 'assets/bonus_map_full.png');
@@ -259,8 +258,6 @@ gameScene.create = function()
             });
     });
 }
-
-
 
 gameScene.update = function ()
 {
@@ -365,10 +362,7 @@ gameScene.update = function ()
             }
         }
     }
-    
-
 }
-
 
 gameScene.win = function(){
     this.stageComplete = true;
@@ -404,23 +398,25 @@ gameScene.showMap = function(seconds){
     this.showingMap = true;
     this.timerEvent.paused = true;
 
+    // Show all the tiles
     for (var i = this.field.length - 1; i >= 0; i--) {
         for (var j = this.field[i].length - 1; j >= 0; j--) {
             this.field[i][j].tile.visible = 0;
         }
     }
     
+    // Set and display the countdown text
     var countdown = seconds;
     this.countdownText.setText(countdown); 
     this.countdownText.visible = 1; 
-
     this.time.addEvent({
         delay: 1000,
         callback: function(){this.countdownText.setText(--countdown)},
         callbackScope: this,
         repeat: seconds - 1
     });
-
+    
+    // After seconds hide all the tiles
     this.time.delayedCall(seconds*1000, function() {
         for (var i = this.field.length - 1; i >= 0; i--) {
             for (var j = this.field[i].length - 1; j >= 0; j--) {
