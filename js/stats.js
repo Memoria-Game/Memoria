@@ -32,9 +32,9 @@ function addFriend(username){
   })
 }
 
-function friends_data(form){
+function friends_data(){
     getFriendScores().then((data) =>{
-        let rows = $(form).find("tbody")
+        let rows = $("#friends_table").find("tbody")
         console.log(data)
         let elems = []
         let id = 1
@@ -49,3 +49,5 @@ function friends_data(form){
 
     } )
 }
+
+friends_data()
