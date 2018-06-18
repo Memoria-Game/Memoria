@@ -239,9 +239,9 @@
                 getPersonnalScore().then((data) => {
                     var dates = [];
                     var scores = [];
-                    for (data in obj){
-                        dates.push(data.date);
-                        scores.psuh(data.score)
+                    for (score in data){
+                        dates.push(score.date);
+                        scores.push(score.score)
                     }
                     var ctx = document.getElementById("scores");
 
@@ -251,7 +251,7 @@
                                 labels: dates,//["18/10/18", "18/10/18", "19/10/18", "20/10/18", "21/10/18", "22/10/18"],
                                 datasets: [{
                                     label: 'Score',
-                                    data: score, //[12, 19, 3, 5, 25, 30],
+                                    data: scores, //[12, 19, 3, 5, 25, 30],
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.2)',
                                         'rgba(54, 162, 235, 0.2)',
