@@ -39,7 +39,8 @@ function friends_data(){
         console.log(data[0].userName)
         console.log(data)
         let id = 1
-        for(d in data){
+        for(i in data){
+            d = data[i]
             elem = "<tr><th scope=\"row\">" + id +
                 "</th><td>" + d.userName + 
                 "</td><td>" + d.bestScore + 
