@@ -105,7 +105,7 @@ gameScene.preload = function ()
     
     // Load all the assets
     this.load.image(EXIT, 'assets/out.png');
-    this.load.image('tile', 'assets/tile.png');
+    this.load.image(EMPTY, 'assets/tile.png');
     this.load.image('tile_activated', 'assets/tile_activated.png');
     this.load.image('player', 'assets/player.png');
     this.load.image(WALL, 'assets/wall.png');
@@ -392,7 +392,7 @@ gameScene.win = function(){
     this.restartText.visible = 1;
     this.timerEvent.destroy();
     // Prepare the data for sending to the server
-    dataEnd = {StageClear:1, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {stageClear:1, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this))
     
 }
@@ -408,7 +408,7 @@ gameScene.loose = function(){
     }, [], this);
 
     // Prepare the data for sending to the server
-    dataEnd = {StageClear:0, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {stageClear:0, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
     }, [], this)));
