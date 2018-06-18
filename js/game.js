@@ -103,7 +103,7 @@ gameScene.createLevel = function(){
 
         // Number of seconds we show the map in seconds, showtime ;) 
         this.showTime = 3;
-
+        // Number of bonus used for stats
         this.numberOfYellowBonusUsed = 0;
         this.numberOfRedBonusUsed = 0;
 
@@ -122,9 +122,6 @@ gameScene.createLevel = function(){
             numberOfCols : this.stage[0].length,
             tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
         }
-
-        console.log(this.options.numberOfRows);
-        console.log(this.options.numberOfCols);
 
         // Construct the array of tiled sprites
         for (var i = 0; i < this.options.numberOfRows; i++) {
@@ -190,9 +187,7 @@ gameScene.createLevel = function(){
 
         // Create the bonus count sprites
         this.lifes_bonus = [];
-        //this.numberOfBonusLife = 0;
         this.maps_bonus = [];
-        //this.numberOfBonusMap = 0;
         for(var i = 0; i < 5; i++){
             this.lifes_bonus[i] = {
                 full: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_full'),
@@ -270,6 +265,9 @@ gameScene.create = function()
 gameScene.update = function ()
 {
     if(this.cursors){
+        // Update Score
+        this.score = this.options.numberOfRows * this.options.numberOfCols * 1000 / (1/this.totalTime);
+        this.scoreText.setText('Score: ' + this.score);
         // Handle the keyboard inputs
         if (this.canMove && !this.showingMap && !this.stageComplete) {
             if (this.cursors.left.isDown)
