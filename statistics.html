@@ -240,9 +240,13 @@
                     var dates = [];
                     var scores = [];
                     for (score in data){
+                        console.log(score.date)
+                        console.log(score.score)
                         dates.push(score.date);
                         scores.push(score.score)
                     }
+                    
+                    
                     var ctx = document.getElementById("scores");
 
                         var myChart = new Chart(ctx, {
