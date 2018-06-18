@@ -61,5 +61,7 @@ friends_data()
 function add_friend_data(){
     let name = $('#friend_name').val()
 
-    addFriend(name).then(() => window.location.href = "statistics.html");
+    addFriend(name)
+        .then(() => window.location.href = "statistics.html")
+        .fail(() => alert("No '" + name + "' user exists"));
 }
