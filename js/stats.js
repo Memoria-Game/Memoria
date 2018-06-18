@@ -84,7 +84,7 @@ function friends_data(){
         let id = 1
         for(i in data){
             d = data[i]
-            elem = "<tr><th scope=\"row\">" + id +
+            elem = //"<tr><th scope=\"row\">" + id +
                 "</th><td>" + d.userName + 
                 "</td><td>" + d.bestScore + 
                 "</td><td>" + d.maxLevel + "</td></tr>"
