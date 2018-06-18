@@ -243,13 +243,15 @@ gameScene.create = function()
                     full: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_full'),
                     empty: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_empty')
                 }
-                this.lifes_bonus[i].full.visible = 0;
+                if(i >= this.numberOfBonusLife)
+                    this.lifes_bonus[i].full.visible = 0;
 
                 this.maps_bonus[i] = {
                     full: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_full'),
                     empty: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_empty')
                 }
-                this.maps_bonus[i].full.visible = 0;
+                if(i >= this.numberOfBonusMap)
+                    this.maps_bonus[i].full.visible = 0;
             }
 
             console.log(this.stage);
@@ -387,13 +389,12 @@ gameScene.win = function(){
     console.log("win");
     
     // Prepare the data for sending to the server
-    dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => {
         this.stageComplete = true;
-    this.winText.visible = 1;
-    this.restartText.visible = 1;
-    this.timerEvent.destroy();});
-    
+        this.winText.visible = 1;
+        this.restartText.visible = 1;
+        this.timerEvent.destroy();});
 }
 
 gameScene.loose = function(){
@@ -408,7 +409,7 @@ gameScene.loose = function(){
     }, [], this);
 
     // Prepare the data for sending to the server
-    dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
     }, [], this));
