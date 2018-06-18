@@ -197,22 +197,27 @@
                   <table class="countries_list">
                     <tbody>
                       <tr>
+                          <div id="1_leaderBoard"></div>
                         <td>United States</td>
                         <td class="fs15 fw700 text-right">33%</td>
                       </tr>
                       <tr>
+                          <div id="2_leaderBoard"></div>
                         <td>France</td>
                         <td class="fs15 fw700 text-right">27%</td>
                       </tr>
                       <tr>
+                          <div id="3_leaderBoard"></div>
                         <td>Germany</td>
                         <td class="fs15 fw700 text-right">16%</td>
                       </tr>
                       <tr>
+                          <div id="4_leaderBoard"></div>
                         <td>Spain</td>
                         <td class="fs15 fw700 text-right">11%</td>
                       </tr>
                       <tr>
+                          <div id="5_leaderBoard"></div>
                         <td>Britain</td>
                         <td class="fs15 fw700 text-right">10%</td>
                       </tr>
@@ -220,6 +225,26 @@
                   </table>
                 </div>
                 <div id="vmap" class="col-md-8" style="width: 500px; height: 400px;"></div>
+                <script>
+                    // Create items array
+                    var items = Object.keys(sample_data).map(function(key) {
+                      return [key, dict[key]];
+                    });
+
+                    // Sort the array based on the second element
+                    items.sort(function(first, second) {
+                      return second[1] - first[1];
+                    });
+
+                    // Create a new array with only the first 5 items
+                    bestCountries = items.slice(0, 5)
+             
+                    document.getElementById("1_leaderBoard").innerHTML = '<td>' + bestCountries[0][0] + '</td><td class="fs15 fw700 text-right">' + bestCountries[0][1] + '</td>';
+                    document.getElementById("2_leaderBoard").innerHTML = '<td>' + bestCountries[1][0] + '</td><td class="fs15 fw700 text-right">' + bestCountries[1][1] + '</td>';
+                    document.getElementById("3_leaderBoard").innerHTML = '<td>' + bestCountries[2][0] + '</td><td class="fs15 fw700 text-right">' + bestCountries[2][1] + '</td>';
+                    document.getElementById("4_leaderBoard").innerHTML = '<td>' + bestCountries[3][0] + '</td><td class="fs15 fw700 text-right">' + bestCountries[3][1] + '</td>';
+                    document.getElementById("5_leaderBoard").innerHTML = '<td>' + bestCountries[4][0] + '</td><td class="fs15 fw700 text-right">' + bestCountries[4][1] + '</td>';
+                </script>
 
         </div>
     </section>
