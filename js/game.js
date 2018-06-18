@@ -321,6 +321,8 @@ gameScene.update = function ()
         else
             this.canMove = false;
 
+        if(!this.canMove)
+            console.log(this.field[this.player.y][this.player.x]);
         // Handle the tiled value actions
         if(!this.field[this.player.y][this.player.x].isActivate){
             switch(this.field[this.player.y][this.player.x].value){
