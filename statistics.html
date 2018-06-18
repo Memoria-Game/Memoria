@@ -110,127 +110,6 @@
                          document.getElementById("average-stage").innerHTML = stats.averageLevel;
                     });
                 }
-                /*var bar1 = new ProgressBar.Line('#bar1', {
-                    strokeWidth: 4,
-                      easing: 'easeInOut',
-                      duration: 1400,
-                      color: '#FFEA82',
-                      trailColor: '#eee',
-                      trailWidth: 1,
-                      svgStyle: {width: '80%', height: '80%'},
-                      text: {
-                        style: {
-                          // Text color.
-                          // Default: same as stroke color (options.color)
-                          color: '#999',
-                          position: 'relative',
-                          left: '40%',
-                          top: '10px',
-                          padding: 0,
-                          margin: 0,
-                          transform: null
-                        },
-                        autoStyleContainer: false
-                      },
-                      from: {color: '#FFEA82'},
-                      to: {color: '#ED6A5A'},
-                      step: (state, bar) => {
-                        bar.setText(Math.round(bar.value() * 100) + ' %');
-                      }
-                    });
-
-                var bar2 = new ProgressBar.Line('#bar2', {
-                    strokeWidth: 4,
-                      easing: 'easeInOut',
-                      duration: 1400,
-                      color: '#6ab04c',
-                      trailColor: '#eee',
-                      trailWidth: 1,
-                      svgStyle: {width: '80%', height: '80%'},
-                      text: {
-                        style: {
-                          // Text color.
-                          // Default: same as stroke color (options.color)
-                          color: '#999',
-                          position: 'relative',
-                          left: '40%',
-                          top: '10px',
-                          padding: 0,
-                          margin: 0,
-                          transform: null
-                        },
-                        autoStyleContainer: false
-                      },
-                      from: {color: '#FFEA82'},
-                      to: {color: '#ED6A5A'},
-                      step: (state, bar) => {
-                        bar.setText(Math.round(bar.value() * 100) + ' %');
-                      }
-                    });
-
-                var bar3 = new ProgressBar.Line('#bar3', {
-                    strokeWidth: 4,
-                      easing: 'easeInOut',
-                      duration: 1400,
-                      color: '#eb4d4b',
-                      trailColor: '#eee',
-                      trailWidth: 1,
-                      svgStyle: {width: '80%', height: '80%'},
-                      text: {
-                        style: {
-                          // Text color.
-                          // Default: same as stroke color (options.color)
-                          color: '#999',
-                          position: 'relative',
-                          left: '40%',
-                          top: '10px',
-                          padding: 0,
-                          margin: 0,
-                          transform: null
-                        },
-                        autoStyleContainer: false
-                      },
-                      from: {color: '#FFEA82'},
-                      to: {color: '#ED6A5A'},
-                      step: (state, bar) => {
-                        bar.setText(Math.round(bar.value() * 100) + ' %');
-                      }
-                    });
-
-                var bar4 = new ProgressBar.Line('#bar4', {
-                    strokeWidth: 4,
-                      easing: 'easeInOut',
-                      duration: 1400,
-                      color: '#30336b',
-                      trailColor: '#eee',
-                      trailWidth: 1,
-                      svgStyle: {width: '80%', height: '80%'},
-                      text: {
-                        style: {
-                          // Text color.
-                          // Default: same as stroke color (options.color)
-                          color: '#999',
-                          position: 'relative',
-                          left: '40%',
-                          top: '10px',
-                          padding: 0,
-                          margin: 0,
-                          transform: null
-                        },
-                        autoStyleContainer: false
-                      },
-                      from: {color: '#FFEA82'},
-                      to: {color: '#ED6A5A'},
-                      step: (state, bar) => {
-                        bar.setText(Math.round(bar.value() * 100) + ' %');
-                      }
-                    });
-
-                bar1.animate(1);  // Value from 0.0 to 1.0
-                bar2.animate(0.8);  // Value from 0.0 to 1.0
-                bar3.animate(0.9);  // Value from 0.0 to 1.0
-                bar4.animate(0.5);  // Value from 0.0 to 1.0
-                };*/
             </script>
           </div>
           <div class="col-md-8">
@@ -239,7 +118,9 @@
                 getPersonnalScore().then((data) => {
                     var dates = [];
                     var scores = [];
-                    for (score in data){
+                    var jsonData = JSON.parse(data);
+
+                    for (score in jsonData){
                         console.log(score.date)
                         console.log(score.score)
                         dates.push(score.date);
