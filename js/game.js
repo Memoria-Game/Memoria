@@ -101,135 +101,135 @@ gameScene.positionY = function(row)
 gameScene.createLevel = function(){
     this.numBonus = 5;
 
-            // Number of seconds we show the map in seconds, showtime ;) 
-            this.showTime = 3;
+        // Number of seconds we show the map in seconds, showtime ;) 
+        this.showTime = 3;
 
-            this.numberOfYellowBonusUsed = 0;
-            this.numberOfRedBonusUsed = 0;
+        this.numberOfYellowBonusUsed = 0;
+        this.numberOfRedBonusUsed = 0;
 
-            // variables for 1 stage
-            this.totalTime = 0;
-            this.field = [];
-            this.cardsGroup = this.add.group();
-            this.showingMap = false;
-            this.stageComplete = false;
-            this.hasLife = false;
+        // variables for 1 stage
+        this.totalTime = 0;
+        this.field = [];
+        this.cardsGroup = this.add.group();
+        this.showingMap = false;
+        this.stageComplete = false;
+        this.hasLife = false;
 
-            // Display options
-            this.options = {
-                tileSpacing : -2.5,
-                numberOfRows : this.stage.length,
-                numberOfCols : this.stage[0].length,
-                tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
-            }
+        // Display options
+        this.options = {
+            tileSpacing : -2.5,
+            numberOfRows : this.stage.length,
+            numberOfCols : this.stage[0].length,
+            tileSize : Math.min(config.default_width/2.5/this.stage[0].length, config.default_height/1.2/this.stage.length)
+        }
 
-            console.log(this.options.numberOfRows);
-            console.log(this.options.numberOfCols);
+        console.log(this.options.numberOfRows);
+        console.log(this.options.numberOfCols);
 
-            // Construct the array of tiled sprites
-            for (var i = 0; i < this.options.numberOfRows; i++) {
-                this.field[i] = [];
-                for (var j = 0; j < this.options.numberOfCols; j++) {
+        // Construct the array of tiled sprites
+        for (var i = 0; i < this.options.numberOfRows; i++) {
+            this.field[i] = [];
+            for (var j = 0; j < this.options.numberOfCols; j++) {
 
-                    //Value of the card
-                    var tile_value = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), this.stage[i][j]);
-                    tile_value.setSize(this.options.tileSize,this.options.tileSize,true);
-                    tile_value.setDisplaySize(this.options.tileSize, this.options.tileSize);
-                    tile_value.visible = 1;
+                //Value of the card
+                var tile_value = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), this.stage[i][j]);
+                tile_value.setSize(this.options.tileSize,this.options.tileSize,true);
+                tile_value.setDisplaySize(this.options.tileSize, this.options.tileSize);
+                tile_value.visible = 1;
 
-                    // Face of the card
-                    var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), EMPTY);
-                    tile.setSize(this.options.tileSize,this.options.tileSize,true);
-                    tile.setDisplaySize(this.options.tileSize, this.options.tileSize);
-                    tile.visible = 0;
+                // Face of the card
+                var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), EMPTY);
+                tile.setSize(this.options.tileSize,this.options.tileSize,true);
+                tile.setDisplaySize(this.options.tileSize, this.options.tileSize);
+                tile.visible = 0;
 
-                    // Face of the card when activated
-                    var tile_activated = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), "tile_activated");
-                    tile_activated.setSize(this.options.tileSize,this.options.tileSize,true);
-                    tile_activated.setDisplaySize(this.options.tileSize, this.options.tileSize);
-                    tile_activated.visible = 0;
+                // Face of the card when activated
+                var tile_activated = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), "tile_activated");
+                tile_activated.setSize(this.options.tileSize,this.options.tileSize,true);
+                tile_activated.setDisplaySize(this.options.tileSize, this.options.tileSize);
+                tile_activated.visible = 0;
 
-                    this.cardsGroup.add(tile_value);
-                    this.cardsGroup.add(tile);
-                    this.cardsGroup.add(tile_activated);
+                this.cardsGroup.add(tile_value);
+                this.cardsGroup.add(tile);
+                this.cardsGroup.add(tile_activated);
 
-                    this.field[i][j] = {
-                        tile_value: tile_value,
-                        tile: tile,
-                        tile_activated: tile_activated,
-                        value: this.stage[i][j],
-                        isActivate: false
-                    }
+                this.field[i][j] = {
+                    tile_value: tile_value,
+                    tile: tile,
+                    tile_activated: tile_activated,
+                    value: this.stage[i][j],
+                    isActivate: false
                 }
             }
+        }
 
-            // Create the labels
-            this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
-            this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-            this.timeText = this.add.text(15, config.default_height - 50, 'Time: ' + this.totalTime + 's', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-            this.lifeText = this.add.text(config.default_width - 250, 15, 'Life Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-            this.showText = this.add.text(config.default_width - 250, 150, 'Map Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
-            this.showTextSpace = this.add.text(config.default_width - 250, 240, "Press SPACE to see the map", { fontSize: '12px', fill: '#000' });
-            this.countdownText = this.add.text(config.default_width/2 - 40, config.default_height/2 - 40, '', { fontSize: '100px', fill: '#FFF' });
-            this.winText = this.add.text(config.default_width/2 - 185, config.default_height/2 - 40, "You Win!", { fontSize: '80px', fill: '#FFF' });
-            this.restartText = this.add.text(config.default_width/2 - 145, config.default_height/2 + 64, "Press SPACE for next Stage", { fontSize: '20px', fill: '#AAA' });
+        // Create the labels
+        this.stageText = this.add.text(15, 15, 'Stage ' + this.stageNumber, { fontSize: '64px', fill: '#000' }).setFontFamily('Montserrat');
+        this.scoreText = this.add.text(15, 90, 'Score: ' + this.score, { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.timeText = this.add.text(15, config.default_height - 50, 'Time: ' + this.totalTime + 's', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.lifeText = this.add.text(config.default_width - 250, 15, 'Life Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.showText = this.add.text(config.default_width - 250, 150, 'Map Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
+        this.showTextSpace = this.add.text(config.default_width - 250, 240, "Press SPACE to see the map", { fontSize: '12px', fill: '#000' });
+        this.countdownText = this.add.text(config.default_width/2 - 40, config.default_height/2 - 40, '', { fontSize: '100px', fill: '#FFF' });
+        this.winText = this.add.text(config.default_width/2 - 185, config.default_height/2 - 40, "You Win!", { fontSize: '80px', fill: '#FFF' });
+        this.restartText = this.add.text(config.default_width/2 - 145, config.default_height/2 + 64, "Press SPACE for next Stage", { fontSize: '20px', fill: '#AAA' });
 
-            // Hide not needed labels
-            this.winText.visible = 0;
-            this.restartText.visible = 0;
-            this.countdownText.visible = 0;
-            this.showTextSpace.visible = 0;
+        // Hide not needed labels
+        this.winText.visible = 0;
+        this.restartText.visible = 0;
+        this.countdownText.visible = 0;
+        this.showTextSpace.visible = 0;
 
-            // Timer label 
-            this.timerEvent = this.time.addEvent({
-                delay: 1000,
-                callback: function(){this.timeText.setText('Time: ' + ++this.totalTime + ' s')},
-                callbackScope: this,
-                loop: true
-            });
+        // Timer label 
+        this.timerEvent = this.time.addEvent({
+            delay: 1000,
+            callback: function(){this.timeText.setText('Time: ' + ++this.totalTime + ' s')},
+            callbackScope: this,
+            loop: true
+        });
 
-            // Create the bonus count sprites
-            this.lifes_bonus = [];
-            //this.numberOfBonusLife = 0;
-            this.maps_bonus = [];
-            //this.numberOfBonusMap = 0;
-            for(var i = 0; i < 5; i++){
-                this.lifes_bonus[i] = {
-                    full: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_full'),
-                    empty: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_empty')
-                }
-                if(i >= this.numberOfBonusLife)
-                    this.lifes_bonus[i].full.visible = 0;
-
-                this.maps_bonus[i] = {
-                    full: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_full'),
-                    empty: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_empty')
-                }
-                if(i >= this.numberOfBonusMap)
-                    this.maps_bonus[i].full.visible = 0;
+        // Create the bonus count sprites
+        this.lifes_bonus = [];
+        //this.numberOfBonusLife = 0;
+        this.maps_bonus = [];
+        //this.numberOfBonusMap = 0;
+        for(var i = 0; i < 5; i++){
+            this.lifes_bonus[i] = {
+                full: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_full'),
+                empty: this.add.sprite(i*40 + config.default_width - 230, 70, 'life_bonus_empty')
             }
+            if(i >= this.numberOfBonusLife)
+                this.lifes_bonus[i].full.visible = 0;
 
-            console.log(this.stage);
-            
-            // Add the player
-            let coords_player = getIndexOfK(this.stage, ENTRY)
-            this.player = {
-                sprite: this.add.sprite(gameScene.positionX(coords_player[1]), gameScene.positionY(coords_player[0]), 'player'),
-                x: coords_player[1],
-                y: coords_player[0]
-            };
-            this.player.sprite.setSize(this.options.tileSize, this.options.tileSize, true);
-            this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
-            this.player.visible = 1;
+            this.maps_bonus[i] = {
+                full: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_full'),
+                empty: this.add.sprite(i*40 + config.default_width - 230, 210, 'map_bonus_empty')
+            }
+            if(i >= this.numberOfBonusMap)
+                this.maps_bonus[i].full.visible = 0;
+        }
 
-            this.canMove = false;
+        console.log(this.stage);
 
-            // Set the keyboard listeners
-            this.cursors = this.input.keyboard.createCursorKeys();
-            this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // Add the player
+        let coords_player = getIndexOfK(this.stage, ENTRY)
+        this.player = {
+            sprite: this.add.sprite(gameScene.positionX(coords_player[1]), gameScene.positionY(coords_player[0]), 'player'),
+            x: coords_player[1],
+            y: coords_player[0]
+        };
+        this.player.sprite.setSize(this.options.tileSize, this.options.tileSize, true);
+        this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
+        this.player.visible = 1;
 
-            // Launch the game 
-            this.showMap(this.showTime);
+        this.canMove = false;
+
+        // Set the keyboard listeners
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        // Launch the game 
+        this.showMap(this.showTime);
 }
 
 gameScene.preload = function ()
@@ -252,25 +252,6 @@ gameScene.preload = function ()
 
 gameScene.create = function()
 {
-    // TODO: Get this values from the Database !
-    //this.score = 0;
-
-    //this.stageNumber = 0;
-
-    /*let stage = [[SHOW,LIFE,EMPTY,WALL,EMPTY,EXIT,EMPTY,EMPTY],
-                 [EMPTY,SHOW,EMPTY,WALL,LIFE,WALL,EMPTY,EMPTY],
-                 [EMPTY,WALL,EMPTY,WALL,WALL,EMPTY,EMPTY,EMPTY],
-                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL],
-                 [SHOW,WALL,EMPTY,WALL,EMPTY,EMPTY,WALL,EMPTY],
-                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,WALL,EMPTY,EMPTY],
-                 [SHOW,WALL,SHOW,WALL,EMPTY,EMPTY,EMPTY,SHOW],
-                 [SHOW,WALL,EMPTY,EMPTY,EMPTY,EMPTY,WALL,WALL]
-                 ];*/
-
-    //this.bestScore = 0;
-
-    // Number of bonus needed to actualy have one
-    
     getResumeGameFromServer().then((data)=>{
         this.alreadyConnected = true;
         this.score = data.score;
@@ -281,7 +262,7 @@ gameScene.create = function()
             this.stage = data2.map;
             this.createLevel();
             });
-        });
+    });
 }
 
 
@@ -392,11 +373,11 @@ gameScene.update = function ()
 gameScene.win = function(){
     // TODO : Update the database
     console.log("win");
+    this.stageComplete = true;
     
     // Prepare the data for sending to the server
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => {
-        this.stageComplete = true;
         this.winText.visible = 1;
         this.restartText.visible = 1;
         this.timerEvent.destroy();});
