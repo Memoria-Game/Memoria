@@ -171,11 +171,9 @@ gameScene.createLevel = function(){
         this.showText = this.add.text(config.default_width - 250, 150, 'Map Bonus :', { fontSize: '32px', fill: '#000' }).setFontFamily('Montserrat');
         this.showTextSpace = this.add.text(config.default_width - 250, 240, "Press SPACE to see the map", { fontSize: '12px', fill: '#000' });
         this.countdownText = this.add.text(config.default_width/2 - 40, config.default_height/2 - 40, '', { fontSize: '100px', fill: '#FFF' });
-        this.winText = this.add.text(config.default_width/2 - 185, config.default_height/2 - 40, "You Win!", { fontSize: '80px', fill: '#FFF' });
         this.restartText = this.add.text(config.default_width/2 - 145, config.default_height/2 + 64, "Press SPACE for next Stage", { fontSize: '20px', fill: '#AAA' });
 
         // Hide not needed labels
-        this.winText.visible = 0;
         this.restartText.visible = 0;
         this.countdownText.visible = 0;
         this.showTextSpace.visible = 0;
@@ -217,6 +215,10 @@ gameScene.createLevel = function(){
         this.player.sprite.setSize(this.options.tileSize, this.options.tileSize, true);
         this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
         this.player.visible = 1;
+    
+        // Add the win Text after the player otherwise overlapp
+        this.winText = this.add.text(config.default_width/2 - 185, config.default_height/2 - 40, "You Win!", { fontSize: '80px', fill: '#FFF' });
+        this.winText.visible = 0;
 
         this.canMove = false;
 
