@@ -1,5 +1,5 @@
 // Tiles possible values
-let EMPTY = 0,
+let EMPTY = 6,
     WALL = 1,
     LIFE = 2,
     SHOW = 3,
@@ -102,7 +102,7 @@ gameScene.preload = function ()
     
     // Load all the assets
     this.load.image(EXIT, 'assets/out.png');
-    this.load.image("tile", 'assets/tile.png');
+    this.load.image(EMPTY, 'assets/tile.png');
     this.load.image('tile_activated', 'assets/tile_activated.png');
     this.load.image('player', 'assets/player.png');
     this.load.image(WALL, 'assets/wall.png');
@@ -183,7 +183,7 @@ gameScene.create = function()
                     tile_value.visible = 1;
 
                     // Face of the card
-                    var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), "tile");
+                    var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), EMPTY);
                     tile.setSize(this.options.tileSize,this.options.tileSize,true);
                     tile.setDisplaySize(this.options.tileSize, this.options.tileSize);
                     tile.visible = 0;
