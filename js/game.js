@@ -358,8 +358,9 @@ gameScene.update = function ()
         }
         
         // Win page case
-        if(this.stageComplete && !this.restarting && this.spaceKey.isDown){
+        if(this.stageComplete && !this.restarting && this.spaceKey.isDown && this.allowRestart){
             this.restarting = true;
+            this.allowRestart = false;
             this.scene.restart();
         }
     }
@@ -374,6 +375,7 @@ gameScene.win = function(){
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => {
         this.restartText.visible = 1;
+        this.allowRestart = true;
     }); 
 }
 
