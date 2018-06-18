@@ -257,7 +257,7 @@ gameScene.create = function()
             // Add the player
             let coords_player = getIndexOfK(this.stage, ENTRY)
             this.player = {
-                sprite: this.add.sprite(gameScene.positionX(coords_player[0]), gameScene.positionY(coords_player[1]), 'player'),
+                sprite: this.add.sprite(gameScene.positionX(coords_player[1]), gameScene.positionY(coords_player[0]), 'player'),
                 x: coords_player[1],
                 y: coords_player[0]
             };
