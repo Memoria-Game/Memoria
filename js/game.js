@@ -1,9 +1,10 @@
 // Tiles possible values
-let EMPTY = "tile",
-    WALL = "wall",
-    LIFE = "life",
-    SHOW = "show",
-    EXIT = "exit";
+let EMPTY = 0,
+    WALL = 1,
+    LIFE = 2,
+    SHOW = 3,
+    ENTRY = 4,
+    EXIT = 5;
 
 // create a new scene named "Game"
 let gameScene = new Phaser.Scene('Game');
@@ -252,7 +253,7 @@ gameScene.create = function()
             }
 
             // Add the player
-            let coords_player = getIndexOfK(this.stage, 4)
+            let coords_player = getIndexOfK(this.stage, ENTRY)
             this.player = {
                 sprite: this.add.sprite(gameScene.positionX(coords_player[0]), gameScene.positionY(coords_player[1]), 'player'),
                 x: coords_player[0],
