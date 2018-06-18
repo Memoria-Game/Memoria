@@ -43,23 +43,30 @@
         <script type="text/javascript" src="js/jquery.vmap.sampledata.js"></script>
         <script>
           jQuery(document).ready(function () {
-            jQuery('#vmap').vectorMap({
-              map: 'world_en',
-              backgroundColor: '#18BC9C',
-              color: '#ffffff',
-              hoverOpacity: 0.7,
-              selectedColor: '#666666',
-              enableZoom: false,
-              showTooltip: true,
-              scaleColors: ['#C8EEFF', '#006491'],
-              values: sample_data,
-              normalizeFunction: 'polynomial',
-              onLabelShow: function (event, label, code) {
-                label.append(': '+sample_data[code]); 
-             }
-                
+              getCountries().then((data) =>{
+                for(index in data){
+                    sample_data[data[index].countryName.toLowerCase()] = data[index].bestScore;
+                    console.log(data[index].countryName.toLowerCase());
+                }
+
+                jQuery('#vmap').vectorMap({
+                  map: 'world_en',
+                  backgroundColor: '#18BC9C',
+                  color: '#ffffff',
+                  hoverOpacity: 0.7,
+                  selectedColor: '#666666',
+                  enableZoom: false,
+                  showTooltip: true,
+                  scaleColors: ['#C8EEFF', '#006491'],
+                  values: sample_data,
+                  normalizeFunction: 'polynomial',
+                  onLabelShow: function (event, label, code) {
+                    label.append(': '+sample_data[code]); 
+                 }
+
+                });
+              });
             });
-          });
         </script>
 
     </head>

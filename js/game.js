@@ -372,13 +372,17 @@ gameScene.win = function(){
     // TODO : Update the database
     console.log("win");
     this.stageComplete = true;
+    this.winText.visible = 1;
+    
+    this.timerEvent.destroy();
     
     // Prepare the data for sending to the server
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => {
-        this.winText.visible = 1;
         this.restartText.visible = 1;
-        this.timerEvent.destroy();});
+        this.scoreText.destroy();
+        this.timeText.destroy();
+    }); 
 }
 
 gameScene.loose = function(){
