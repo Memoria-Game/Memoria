@@ -38,7 +38,7 @@ function getResumeGameFromServer(){
 function sendEndStage(dataLevel){
   return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
-     data: dataLevel,
+     data: JSON.stringify(dataLevel),
      contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true }
@@ -389,8 +389,7 @@ gameScene.win = function(){
     this.restartText.visible = 1;
     this.timerEvent.destroy();
     // Prepare the data for sending to the server
-    dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
-    dataEnd = JSON.stringify(dataEnd)
+    dataEnd = {StageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this))
     
 }
@@ -406,8 +405,7 @@ gameScene.loose = function(){
     }, [], this);
 
     // Prepare the data for sending to the server
-    dataEnd = {"StageClear": this.stageComplete, "temps": this.totalTime, "score": this.score, "yellowBonusTot": this.numberOfBonusMap, "redBonusTot": this.numberOfBonusLife, "yellowBonusUsed": 0, "redBonusUsed": 0}
-    dataEnd = JSON.stringify(dataEnd)
+    dataEnd = {StageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
     }, [], this)));
