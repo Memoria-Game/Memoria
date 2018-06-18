@@ -118,15 +118,13 @@
                 getPersonnalScore().then((data) => {
                     var dates = [];
                     var scores = [];
-                    var jsonData = JSON.parse(data);
 
-                    for (score in jsonData){
-                        console.log(score.date)
-                        console.log(score.score)
-                        dates.push(score.date);
-                        scores.push(score.score)
+                    for (index in data){
+                        console.log(data[index].date)
+                        console.log(data[index].score)
+                        dates.push(data[index].date);
+                        scores.push(data[index].score)
                     }
-                    
                     
                     var ctx = document.getElementById("scores");
 
