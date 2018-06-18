@@ -198,28 +198,18 @@
                     <tbody>
                       <tr>
                           <div id="1_leaderBoard"></div>
-                        <td>United States</td>
-                        <td class="fs15 fw700 text-right">33%</td>
                       </tr>
                       <tr>
                           <div id="2_leaderBoard"></div>
-                        <td>France</td>
-                        <td class="fs15 fw700 text-right">27%</td>
                       </tr>
                       <tr>
                           <div id="3_leaderBoard"></div>
-                        <td>Germany</td>
-                        <td class="fs15 fw700 text-right">16%</td>
                       </tr>
                       <tr>
                           <div id="4_leaderBoard"></div>
-                        <td>Spain</td>
-                        <td class="fs15 fw700 text-right">11%</td>
                       </tr>
                       <tr>
                           <div id="5_leaderBoard"></div>
-                        <td>Britain</td>
-                        <td class="fs15 fw700 text-right">10%</td>
                       </tr>
                     </tbody>
                   </table>
@@ -228,7 +218,7 @@
                 <script>
                     // Create items array
                     var items = Object.keys(sample_data).map(function(key) {
-                      return [key, dict[key]];
+                      return [key, sample_data[key]];
                     });
 
                     // Sort the array based on the second element
