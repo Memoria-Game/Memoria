@@ -35,7 +35,7 @@ function getResumeGameFromServer(){
   });
 }
 
-function sendEnStage(dataLevel){
+function sendEndStage(dataLevel){
     console.log(dataLevel);
     console.log(JSON.stringify(dataLevel));
     
