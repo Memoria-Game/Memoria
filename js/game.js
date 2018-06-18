@@ -265,7 +265,7 @@ gameScene.update = function ()
 {
     if(this.cursors){
         // Update Score
-        this.score = Math.round(this.options.numberOfRows * this.options.numberOfCols * 1000 / (1 + (this.totalTime/30)));
+        this.score = Math.round(this.options.numberOfRows * this.options.numberOfCols * 1000 / (1 + (this.totalTime/3)));
         this.scoreText.setText('Score: ' + this.score);
         // Handle the keyboard inputs
         if (this.canMove && !this.showingMap && !this.stageComplete) {
