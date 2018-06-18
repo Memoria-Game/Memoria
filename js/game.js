@@ -351,7 +351,9 @@ gameScene.update = function ()
         if(!this.restarting && this.stageComplete && this.spaceKey.isDown)
             this.restarting = true;
             this.scene.restart();
-            
+        
+        if(this.spaceKey.isUp)
+            this.restarting = false;
 
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
