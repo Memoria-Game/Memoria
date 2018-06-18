@@ -36,9 +36,6 @@ function getResumeGameFromServer(){
 }
 
 function sendEndStage(dataLevel){
-    console.log(dataLevel);
-    console.log(JSON.stringify(dataLevel));
-    
     return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
      data: JSON.stringify(dataLevel),
