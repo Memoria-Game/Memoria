@@ -72,7 +72,6 @@ function sortTable() {
       switching = true;
     }
   }
-  alert("test"); 
 }
 
 function friends_data(){
@@ -85,7 +84,7 @@ function friends_data(){
         for(i in data){
             d = data[i]
             elem = //"<tr><th scope=\"row\">" + id +
-                "</th><td>" + d.userName + 
+                "<tr></th><td>" + d.userName + 
                 "</td><td>" + d.bestScore + 
                 "</td><td>" + d.maxLevel + "</td></tr>"
             rows.append(elem)
