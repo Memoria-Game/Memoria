@@ -183,7 +183,7 @@ gameScene.create = function()
                     tile_value.visible = 1;
 
                     // Face of the card
-                    var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), "tile");
+                    var tile = this.add.sprite(gameScene.positionX(j), gameScene.positionY(i), EMPTY);
                     tile.setSize(this.options.tileSize,this.options.tileSize,true);
                     tile.setDisplaySize(this.options.tileSize, this.options.tileSize);
                     tile.visible = 0;
