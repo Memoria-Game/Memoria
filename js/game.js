@@ -135,8 +135,8 @@ gameScene.create = function()
     //this.bestScore = 0;
 
     // Number of bonus needed to actualy have one
+    
     getResumeGameFromServer().then((data)=>{
-        
         this.score = data.score;
         this.numberOfBonusMap = data.yellowBonus;
         this.numberOfBonusLife = data.redBonus;
@@ -384,17 +384,20 @@ gameScene.update = function ()
 
 gameScene.win = function(){
     // TODO : Update the database
-    this.stageComplete = true;
-    this.winText.visible = 1;
-    this.restartText.visible = 1;
-    this.timerEvent.destroy();
+    console.log("win");
+    
     // Prepare the data for sending to the server
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
-    sendEndStage(dataEnd).then(() => getNextStageFromServer(this))
+    sendEndStage(dataEnd).then(() => {
+        this.stageComplete = true;
+    this.winText.visible = 1;
+    this.restartText.visible = 1;
+    this.timerEvent.destroy();});
     
 }
 
 gameScene.loose = function(){
+     console.log("loose");
     this.stageComplete = false;
     // shake the camera
     this.cameras.main.shake(500);
@@ -406,9 +409,9 @@ gameScene.loose = function(){
 
     // Prepare the data for sending to the server
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
-    sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
+    sendEndStage(dataEnd).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
-    }, [], this)));
+    }, [], this));
     // restart game
     
 }

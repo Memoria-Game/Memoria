@@ -22,6 +22,10 @@ function getHomeScore(){
     return getFromAPI('statistics/countries/home')
 }
 
+function getCountries(){
+    return getFromAPI('statistics/countries')
+}
+
 function addFriend(username){
     return $.ajax("http://api.memoria.cf/statistics/add_friend ", {
      method: 'POST',
