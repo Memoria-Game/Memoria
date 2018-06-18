@@ -91,26 +91,23 @@
         <div class="row">
           <div class="col-md-4">
             Best Score:
-            <div id="bar1"></div>
+            <div id="best-score"></div>
             Average Score:
-            <div id="bar2"></div>
+            <div id="average-score"></div>
             Max Stage:
-            <div id="bar3"></div>
+            <div id="max-stage"></div>
             Average Stage:
-            <div id="bar4"></div>
+            <div id="average-stage"></div>
 
             <script type="text/javascript">
                 
                 window.onload = function onLoad() {
                     getPersonnalStat().then((stats) =>{
                          //# {totYellowBonusUsed:10, totRedBonusUsed:12, bestScore: 19, maxLevel, averageLevel, averageScore}
-                         var totYellowBonusUsed = stats.totYellowBonusUsed;
-                         var totRedBonusUsed = stats.totRedBonusUsed;
-                         var bestScore = stats.bestScore;
-                         var maxLevel = stats.maxLevel;
-                         var averageLevel = stats.averageLevel;
-                         var averageScore = stats.averageScore;
-                        console.log(totYellowBonusUsed);
+                         document.getElementById("best-score").innerHTML = stats.bestScore;
+                         document.getElementById("average-score").innerHTML = stats.averageScore;
+                         document.getElementById("max-stage").innerHTML = stats.maxLevel;
+                         document.getElementById("average-stage").innerHTML = stats.averageLevel;
                     });
                 }
                 /*var bar1 = new ProgressBar.Line('#bar1', {
@@ -239,21 +236,15 @@
           <div class="col-md-8">
             <canvas id="scores" width="400" height="200"></canvas>
             <script>
-                
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var obj = JSON.parse(this.responseText);
-                        var dates = [];
-                        var scores = [];
-                        for (data in obj){
-                            dates.push(data.date);
-                            scores.psuh(data.score)
-                        }
-                            
-                        
-                        var ctx = document.getElementById("scores");
-                        
+                getPersonnalScore().then((data) => {
+                    var dates = [];
+                    var scores = [];
+                    for (data in obj){
+                        dates.push(data.date);
+                        scores.psuh(data.score)
+                    }
+                    var ctx = document.getElementById("scores");
+
                         var myChart = new Chart(ctx, {
                             type: 'line',
                             data: {
@@ -290,10 +281,7 @@
                                 }
                             }
                         });
-                    }
-                };
-                xhttp.open("GET", "/statisctics/personnalScore", false);
-                xhttp.send();
+                });
                 </script>
           </div>
         </div>
