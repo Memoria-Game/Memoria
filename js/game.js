@@ -348,10 +348,10 @@ gameScene.update = function ()
         this.field[this.player.y][this.player.x].isActivate = true;
         
         // Win page case
-        if(!this.restarting && this.stageComplete && this.spaceKey.isDown)
-            this.restarting = true;
+        if(this.stageComplete && this.spaceKey.isDown){
+            this.stageComplete = false;
             this.scene.restart();
-            
+        }
 
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
@@ -371,25 +371,20 @@ gameScene.update = function ()
 
 
 gameScene.win = function(){
-    // TODO : Update the database
-    console.log("win");
     this.stageComplete = true;
     this.winText.visible = 1;
-    
     this.timerEvent.destroy();
     
     // Prepare the data for sending to the server
     dataEnd = {stageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:this.numberOfYellowBonusUsed, redBonusUsed:this.numberOfRedBonusUsed}
     sendEndStage(dataEnd).then(() => {
         this.restartText.visible = 1;
-        this.scoreText.destroy();
-        this.timeText.destroy();
     }); 
 }
 
 gameScene.loose = function(){
-     console.log("loose");
     this.stageComplete = false;
+    
     // shake the camera
     this.cameras.main.shake(500);
 
@@ -403,8 +398,6 @@ gameScene.loose = function(){
     sendEndStage(dataEnd).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
     }, [], this));
-    // restart game
-    
 }
 
 gameScene.showMap = function(seconds){
