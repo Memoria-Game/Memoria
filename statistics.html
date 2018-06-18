@@ -133,9 +133,7 @@
 
                     for (index in data){
                         var date = (new Date(data[index].date))
-                        console.log(date.toString())
-                        console.log(data[index].score)
-                        dates.push(date.toString());
+                        dates.push(date.toLocaleString('en-GB', { timeZone: 'UTC' }));
                         scores.push(data[index].score)
                     }
                     
