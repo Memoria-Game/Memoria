@@ -392,7 +392,7 @@ gameScene.win = function(){
     this.restartText.visible = 1;
     this.timerEvent.destroy();
     // Prepare the data for sending to the server
-    dataEnd = {StageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {StageClear:1, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this))
     
 }
@@ -408,7 +408,7 @@ gameScene.loose = function(){
     }, [], this);
 
     // Prepare the data for sending to the server
-    dataEnd = {StageClear:this.stageComplete, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
+    dataEnd = {StageClear:0, temps:this.totalTime, score:this.score, yellowBonusTot:this.numberOfBonusMap, redBonusTot: this.numberOfBonusLife, yellowBonusUsed:0, redBonusUsed:0}
     sendEndStage(dataEnd).then(() => getNextStageFromServer(this).then(() => this.time.delayedCall(500, function() {
         this.scene.restart();
     }, [], this)));
