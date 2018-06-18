@@ -24,7 +24,7 @@ function getNextStageFromServer(){
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true }
-  })
+  });
 }
 
 function getResumeGameFromServer(){
@@ -32,17 +32,20 @@ function getResumeGameFromServer(){
      method: 'GET',
      crossDomain: true,
      xhrFields: { withCredentials: true },
-  })
+  });
 }
 
-function sendEndStage(dataLevel){
-  return $.ajax("http://api.memoria.cf/game/endStage", {
+function sendEnStage(dataLevel){
+    console.log(dataLevel);
+    console.log(JSON.stringify(dataLevel));
+    
+    return $.ajax("http://api.memoria.cf/game/endStage", {
      method: 'POST',
-     data: dataLevel,
+     data: JSON.stringify(dataLevel),
      contentType:"application/json; charset=utf-8",
      crossDomain: true,
      xhrFields: { withCredentials: true }
-  })
+    });
 }
 
 function getIndexOfK(arr, k) {
