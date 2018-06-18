@@ -53,3 +53,9 @@ function friends_data(){
 }
 
 friends_data()
+
+function add_friend_data(){
+    let name = $('#friend_name').val()
+
+    addFriend(name).then(() => window.location.href = "statistics.html");
+}
