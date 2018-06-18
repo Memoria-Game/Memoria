@@ -252,12 +252,14 @@ gameScene.create = function()
                 this.maps_bonus[i].full.visible = 0;
             }
 
+            console.log(this.stage);
+            
             // Add the player
             let coords_player = getIndexOfK(this.stage, ENTRY)
             this.player = {
                 sprite: this.add.sprite(gameScene.positionX(coords_player[0]), gameScene.positionY(coords_player[1]), 'player'),
-                x: coords_player[0],
-                y: coords_player[1]
+                x: coords_player[1],
+                y: coords_player[0]
             };
             this.player.sprite.setSize(this.options.tileSize, this.options.tileSize, true);
             this.player.sprite.setDisplaySize(this.options.tileSize, this.options.tileSize);
@@ -378,6 +380,7 @@ gameScene.update = function ()
     
 
 }
+
 
 gameScene.win = function(){
     // TODO : Update the database
