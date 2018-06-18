@@ -35,6 +35,7 @@ function addFriend(username){
 function friends_data(){
     getFriendScores().then((data) =>{
         let rows = $("#friends_table").find("tbody")
+        rows.empty()
         console.log(data[0].userName)
         console.log(data)
         let id = 1
