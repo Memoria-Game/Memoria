@@ -348,9 +348,10 @@ gameScene.update = function ()
         this.field[this.player.y][this.player.x].isActivate = true;
         
         // Win page case
-        if(this.stageComplete && this.spaceKey.isDown)
+        if(this.stageComplete && this.spaceKey.isDown){
             this.stageComplete = false;
             this.scene.restart();
+        }
 
         // Bonus Map ready to use
         if(this.numberOfBonusMap == this.numBonus){
