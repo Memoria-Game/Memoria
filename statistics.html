@@ -34,6 +34,23 @@
         crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/connexion.js"></script>
         <script type="text/javascript" src="js/stats.js"></script>
+        
+        <script>
+          jQuery(document).ready(function () {
+            jQuery('#vmap').vectorMap({
+              map: 'world_en',
+              backgroundColor: '#18BC9C',
+              color: '#ffffff',
+              hoverOpacity: 0.7,
+              selectedColor: '#666666',
+              enableZoom: false,
+              showTooltip: true,
+              scaleColors: ['#C8EEFF', '#006491'],
+              values: sample_data,
+              normalizeFunction: 'polynomial'
+            });
+          });
+        </script>
 
         <!-- ChartJS -->
         <script type="text/javascript" src="node_modules/chart.js/dist/Chart.min.js"></script>
@@ -105,10 +122,10 @@
                     var scores = [];
 
                     for (index in data){
-                        var date = (new Date(data[index].date)).toTimeString
-                        console.log(date)
+                        var date = (new Date(data[index].date))
+                        console.log(date.toString())
                         console.log(data[index].score)
-                        dates.push(date);
+                        dates.push(date.toString());
                         scores.push(data[index].score)
                     }
                     
@@ -230,24 +247,6 @@
             </div></div>
 
     </section>
-          
-          
-          <script>
-          jQuery(document).ready(function () {
-            jQuery('#vmap').vectorMap({
-              map: 'world_en',
-              backgroundColor: '#18BC9C',
-              color: '#ffffff',
-              hoverOpacity: 0.7,
-              selectedColor: '#666666',
-              enableZoom: false,
-              showTooltip: true,
-              scaleColors: ['#C8EEFF', '#006491'],
-              values: sample_data,
-              normalizeFunction: 'polynomial'
-            });
-          });
-        </script>
     </body>
 </html>
 
